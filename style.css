@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & BACKGROUNDS
+   ========================================================================== */
 body {
   background-size: cover;
   background-position: center;
@@ -11,7 +14,6 @@ body {
   overflow-y: auto;
 }
 
-/* Hintergrund-Klassen */
 .bg-sunset {
   background-image: url("sunset.png");
 }
@@ -19,7 +21,9 @@ body {
   background-image: url("flowers.png");
 }
 
-/* --- Navigation --- */
+/* ==========================================================================
+   2. HEADER & NAVIGATION (Vollständig bereinigt)
+   ========================================================================== */
 header {
   position: relative;
   z-index: 10;
@@ -27,17 +31,23 @@ header {
 }
 
 nav {
-  padding: 15px;
-  text-align: center;
+  position: relative;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 30px;
+  min-height: 50px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 65px;
 }
 
 nav a {
   color: #00ffff;
-  margin: 0 10px;
   text-decoration: none;
   font-weight: bold;
   font-size: clamp(14px, 4vw, 18px);
@@ -45,22 +55,177 @@ nav a {
   transition: color 0.3s ease;
 }
 
-nav a:hover {
-  color: #b10dc9;
-  animation: blink 0.5s infinite;
+/* Ultraviolett-Blinkeffekt für alle normalen Nav-Links */
+.nav-links a:hover {
+  color: #6600ff;
+  animation: blinken 0.6s infinite;
 }
 
-@keyframes blink {
+/* Social-Media-Icons am rechten Rand */
+.nav-socials {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #00ffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:
+    stroke 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Ultraviolett-Blinkeffekt für die Social Icons */
+.nav-socials a:hover .social-icon {
+  stroke: #6600ff;
+  transform: scale(1.15);
+}
+
+.nav-socials a:hover {
+  animation: blinken 0.6s infinite;
+}
+
+/* Universal-Fallback für alle anderen Hover-Links auf der Seite */
+a:hover {
+  color: #6600ff;
+  animation: blinken 0.6s infinite;
+}
+
+/* ==========================================================================
+   3. ANIMATIONS (Keyframes zentralisiert)
+   ========================================================================== */
+@keyframes blinken {
   0%,
   100% {
     opacity: 1;
   }
   50% {
-    opacity: 0;
+    opacity: 0.4; /* Elegantes, ultraviolettes Pulsieren */
   }
 }
 
-/* --- Hauptbereich --- */
+@keyframes fadeSequence {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+  }
+  15%,
+  85% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%);
+  }
+}
+
+@keyframes finalFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes superSchwirren {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(40px, -50px) scale(1.05) rotate(5deg);
+  }
+  50% {
+    transform: translate(-30px, -20px) scale(0.95) rotate(-10deg);
+  }
+  75% {
+    transform: translate(50px, 30px) scale(1) rotate(8deg);
+  }
+  100% {
+    transform: translate(-15px, -60px) scale(1.02) rotate(-5deg);
+  }
+}
+
+@keyframes hummelSchwirren {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-50px, 40px) scale(1.03) rotate(-8deg);
+  }
+  66% {
+    transform: translate(40px, -40px) scale(0.97) rotate(6deg);
+  }
+  100% {
+    transform: translate(-15px, -25px) scale(1);
+  }
+}
+
+@keyframes sachteSchwingen {
+  0% {
+    transform: translateY(15px) translateX(-25px) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(-20px) translateX(25px) rotate(3deg);
+  }
+}
+
+@keyframes flügelschlagLinks {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0.12);
+  }
+}
+
+@keyframes flügelschlagRechts {
+  0% {
+    transform: scaleX(-1);
+  }
+  100% {
+    transform: scaleX(-0.12);
+  }
+}
+
+@keyframes rumpfVibe {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0.97) translateY(1px);
+  }
+}
+
+@keyframes rayMultiGluehen {
+  0% {
+    opacity: 0.02;
+    transform: scaleX(0.7) translateY(0);
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0.05;
+    transform: scaleX(1.2);
+  }
+}
+
+/* ==========================================================================
+   4. MAIN CONTENT & TEXT SEQUENCES
+   ========================================================================== */
 main {
   position: relative;
   min-height: calc(100vh - 60px);
@@ -101,22 +266,6 @@ main {
   pointer-events: none;
 }
 
-@keyframes fadeSequence {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -30%);
-  }
-  15%,
-  85% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -70%);
-  }
-}
-
 .txt-1 {
   animation: fadeSequence 4s ease-in-out 1.7s forwards;
 }
@@ -133,18 +282,9 @@ main {
   animation: finalFade 2s ease-in-out 17.7s forwards;
 }
 
-@keyframes finalFade {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -30%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-
-/* --- Globaler Insekten-Layer (Fixiert im Hintergrund auf allen Seiten) --- */
+/* ==========================================================================
+   5. INSECTS & NATURE EFFECTS (Optimized Layering)
+   ========================================================================== */
 .insect-layer {
   position: fixed;
   top: 0;
@@ -152,7 +292,7 @@ main {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 1; /* Ganz hinten, direkt vor dem Hintergrundbild */
+  z-index: 1;
   overflow: hidden;
 }
 
@@ -170,7 +310,6 @@ main {
   top: var(--y);
 }
 
-/* --- Bienen & Hummeln (Senior GPU-Accelerated Animation) --- */
 .bee {
   font-size: clamp(20px, 4vw, 30px);
   animation: superSchwirren 6s infinite ease-in-out alternate;
@@ -191,40 +330,6 @@ main {
   animation-delay: -2s;
 }
 
-@keyframes superSchwirren {
-  0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-  }
-  25% {
-    transform: translate(40px, -50px) scale(1.05) rotate(5deg);
-  }
-  50% {
-    transform: translate(-30px, -20px) scale(0.95) rotate(-10deg);
-  }
-  75% {
-    transform: translate(50px, 30px) scale(1) rotate(8deg);
-  }
-  100% {
-    transform: translate(-15px, -60px) scale(1.02) rotate(-5deg);
-  }
-}
-
-@keyframes hummelSchwirren {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(-50px, 40px) scale(1.03) rotate(-8deg);
-  }
-  66% {
-    transform: translate(40px, -40px) scale(0.97) rotate(6deg);
-  }
-  100% {
-    transform: translate(-15px, -25px) scale(1);
-  }
-}
-
-/* --- Schmetterling Standard-Styling (Startseite) --- */
 .butterfly {
   width: clamp(80px, 16vw, 120px);
   height: clamp(80px, 16vw, 120px);
@@ -243,15 +348,6 @@ main {
   transform-origin: 200px 200px;
 }
 
-@keyframes sachteSchwingen {
-  0% {
-    transform: translateY(15px) translateX(-25px) rotate(-3deg);
-  }
-  100% {
-    transform: translateY(-20px) translateX(25px) rotate(3deg);
-  }
-}
-
 .links {
   animation: flügelschlagLinks 0.23s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
@@ -262,39 +358,26 @@ main {
   transform-origin: 200px 200px;
 }
 
-@keyframes flügelschlagLinks {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0.12);
-  }
-}
-
-@keyframes flügelschlagRechts {
-  0% {
-    transform: scaleX(-1);
-  }
-  100% {
-    transform: scaleX(-0.12);
-  }
-}
-
 .falter-rumpf {
   animation: rumpfVibe 0.23s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
 }
 
-@keyframes rumpfVibe {
-  0% {
-    transform: scaleY(1);
-  }
-  100% {
-    transform: scaleY(0.97) translateY(1px);
-  }
+/* --- MONSTER-FALTER (Donate) --- */
+.content-section ~ .butterfly {
+  width: clamp(500px, 80vw, 900px);
+  height: clamp(500px, 80vw, 900px);
+  z-index: 2;
+  margin-top: 5px;
+  position: relative;
+  left: 50%;
+  top: -150px;
+  transform: translateX(-50%);
 }
 
-/* --- Content-Section (Unterseiten - Sicher im Vordergrund) --- */
+/* ==========================================================================
+   6. SUBPAGES & GALERIE
+   ========================================================================== */
 .content-section {
   text-align: center;
   width: 100%;
@@ -305,10 +388,9 @@ main {
   backdrop-filter: blur(5px);
   box-sizing: border-box;
   margin: 20px 0;
-  z-index: 6; /* Setzt den Text-Inhalt VOR die fliegenden Hintergrund-Bienen */
+  z-index: 6;
 }
 
-/* --- Bildergalerie Grid-System & Hover-Glow --- */
 .gallery-container {
   max-width: 1000px;
   width: 95%;
@@ -373,7 +455,7 @@ main {
   color: #000;
 }
 
-/* --- PayPal Button Styling --- */
+/* --- PayPal Button --- */
 .paypal-button {
   display: inline-block;
   margin-top: 20px;
@@ -396,19 +478,9 @@ main {
   animation: none;
 }
 
-/* --- Donate-Spezifisch: Der absolute MONSTER-FALTER --- */
-.content-section ~ .butterfly {
-  width: clamp(500px, 80vw, 900px);
-  height: clamp(500px, 80vw, 900px);
-  z-index: 2;
-  margin-top: 5px;
-  position: relative;
-  left: 50%;
-  top: -150px;
-  transform: translateX(-50%);
-}
-
-/* --- Sonnenstrahlen --- */
+/* ==========================================================================
+   7. SUN RAYS EFFECT
+   ========================================================================== */
 .sun-rays-container {
   position: fixed;
   top: 0;
@@ -438,62 +510,23 @@ main {
   animation-delay: calc(var(--i) * 0.7s);
 }
 
-@keyframes rayMultiGluehen {
-  0% {
-    opacity: 0.02;
-    transform: scaleX(0.7) translateY(0);
-  }
-  50% {
-    opacity: 0.65;
-  }
-  100% {
-    opacity: 0.05;
-    transform: scaleX(1.2);
-  }
-}
-/* --- About Us: Spezifisches Asymmetrisches Layout --- */
+/* ==========================================================================
+   8. ABOUT US PAGES & RESPONSIVE LAYOUTS
+   ========================================================================== */
 .about-main {
-  flex-direction: row; /* Richtet Falter und Text nebeneinander aus */
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Der große Falter auf der linken Seite */
-.about-butterfly {
-  position: relative;
-  left: auto;
-  top: auto;
-  transform: none;
-  width: clamp(
-    300px,
-    35vw,
-    500px
-  ); /* Gewaltige Größe, aber perfekt balanciert */
-  height: clamp(300px, 35vw, 500px);
-  z-index: 2;
-  order: 1; /* Garantiert, dass er links steht */
-}
-
-.about-content {
-  max-width: 550px;
-  text-align: left; /* Edler linksbündiger Text für die Inhaltsseite */
-  order: 2;
-}
-
-.about-content h1 {
-  text-align: left; /* Überschrift matcht den Text */
-}
-
-/* --- About Us: Sauberes, zentriertes Layout --- */
-.about-main {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.about-butterfly {
+  position: relative;
+  width: clamp(300px, 35vw, 500px);
+  height: clamp(300px, 35vw, 500px);
+  z-index: 2;
 }
 
 .about-content {
@@ -503,4 +536,19 @@ main {
 
 .about-content h1 {
   text-align: center;
+}
+
+/* --- Responsive Media Query --- */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+  }
+  .nav-socials {
+    position: static;
+    transform: none;
+    margin-top: 5px;
+  }
 }
