@@ -144,366 +144,18 @@ main {
   }
 }
 
-/* --- Insekten Basis-Positionierung --- */
-.bee,
-.bumblebee,
-.butterfly {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  pointer-events: none;
-  display: inline-block;
-  transition:
-    top 5s ease-in-out,
-    left 5s ease-in-out,
-    transform 1.2s ease-in-out;
-}
-
-/* --- Bienen & Hummeln --- */
-.bee {
-  font-size: clamp(20px, 4vw, 30px);
-  opacity: 0.9;
-  z-index: 1;
-  animation: pulse 3.5s infinite ease-in-out;
-}
-
-.bumblebee {
-  font-size: clamp(28px, 5vw, 42px);
-  opacity: 0.95;
-  z-index: 1;
-  animation: bumblePulse 4.5s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes bumblePulse {
-  0%,
-  100% {
-    opacity: 0.85;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-/* --- Schmetterling-Styling & 3D-Flug --- */
-.butterfly {
-  width: clamp(70px, 15vw, 110px);
-  height: clamp(70px, 15vw, 110px);
-  z-index: 2;
-}
-
-.butterfly svg {
-  width: 100%;
-  height: 100%;
-}
-
-.falter-schweben {
-  animation: sachteSchwingen 4s ease-in-out infinite alternate;
-  transform-origin: 200px 200px;
-}
-
-@keyframes sachteSchwingen {
-  0% {
-    transform: translateY(15px) rotate(-2deg);
-  }
-  100% {
-    transform: translateY(-20px) rotate(3deg);
-  }
-}
-
-/* Senior-Trick: Eigene Animationen verhindern das Überschreiben der Spiegelung! */
-.links {
-  animation: flügelschlagLinks 0.25s ease-in-out infinite alternate;
-  transform-origin: 200px 200px;
-}
-
-.rechts {
-  animation: flügelschlagRechts 0.25s ease-in-out infinite alternate;
-  transform-origin: 200px 200px;
-}
-
-@keyframes flügelschlagLinks {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0.15);
-  }
-}
-
-@keyframes flügelschlagRechts {
-  0% {
-    transform: scaleX(-1);
-  } /* Startet gespiegelt */
-  100% {
-    transform: scaleX(-0.15);
-  } /* Klappt gespiegelt zusammen */
-}
-
-.falter-rumpf {
-  animation: rumpfVibe 0.25s ease-in-out infinite alternate;
-  transform-origin: 200px 200px;
-}
-
-@keyframes rumpfVibe {
-  0% {
-    transform: scaleY(1);
-  }
-  100% {
-    transform: scaleY(0.98) translateY(1px);
-  }
-}
-
-/* --- Content-Section (Unterseiten) --- */
-.content-section {
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-  padding: 25px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
-  box-sizing: border-box;
-  margin: 20px 0;
-  z-index: 6;
-}
-
-.content-section h1 {
-  color: #00ffff;
-  font-size: clamp(2rem, 5vw, 2.5rem);
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
-.content-section p {
-  font-size: clamp(1rem, 3.5vw, 1.2rem);
-  line-height: 1.5;
-}
-
-/* --- Sonnenstrahlen --- */
-.sun-rays-container {
+/* --- Globaler Insekten-Layer (Fixiert im Hintergrund auf allen Seiten) --- */
+.insect-layer {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  pointer-events: none;
+  z-index: 1; /* Ganz hinten, direkt vor dem Hintergrundbild */
   overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
 }
 
-.ray {
-  position: absolute;
-  top: -200px;
-  width: 0;
-  height: 0;
-  border-left: 450px solid transparent;
-  border-right: 450px solid transparent;
-  border-bottom: 160vh solid rgba(255, 150, 20, 0.1);
-  filter: blur(60px);
-  transform-origin: top center;
-  opacity: 0;
-
-  left: calc(var(--i) * 11% - 5%);
-  transform: rotate(calc(var(--i) * 11deg - 45deg));
-  border-bottom-color: rgba(255, calc(255 - (var(--i) * 20)), 0, 0.13);
-
-  animation: rayMultiGluehen 18s infinite ease-in-out alternate;
-  animation-delay: calc(var(--i) * 0.7s);
-}
-
-@keyframes rayMultiGluehen {
-  0% {
-    opacity: 0.02;
-    transform: scaleX(0.7) translateY(0);
-  }
-  50% {
-    opacity: 0.65;
-  }
-  100% {
-    opacity: 0.05;
-    transform: scaleX(1.2);
-  }
-} /* --- PayPal Button Styling --- */
-.paypal-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background-color: #ffc439; /* PayPal Gelb */
-  color: #003087; /* PayPal Blau */
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 25px;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.paypal-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(255, 196, 57, 0.4);
-  color: #003087; /* Verhindert das Blink-Blink aus der Nav-Animation */
-  animation: none;
-}
-body {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-/* Hintergrund-Klassen */
-.bg-sunset {
-  background-image: url("sunset.png");
-}
-.bg-flowers {
-  background-image: url("flowers.png");
-}
-
-/* --- Navigation --- */
-header {
-  position: relative;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-nav {
-  padding: 15px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-nav a {
-  color: #00ffff;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: clamp(14px, 4vw, 18px);
-  display: inline-block;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #b10dc9;
-  animation: blink 0.5s infinite;
-}
-
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-/* --- Hauptbereich --- */
-main {
-  position: relative;
-  min-height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.text-container {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  min-height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.animated-text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #00ffff;
-  font-size: clamp(1.8rem, 6vw, 3rem);
-  font-weight: bold;
-  text-shadow:
-    0 0 4px #00ffff,
-    2px 2px 2px rgba(0, 0, 0, 0.9),
-    0px 0px 15px rgba(0, 0, 0, 1),
-    0px 0px 30px rgba(0, 0, 0, 0.9);
-  opacity: 0;
-  width: 90%;
-  pointer-events: none;
-}
-
-@keyframes fadeSequence {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -30%);
-  }
-  15%,
-  85% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -70%);
-  }
-}
-
-.txt-1 {
-  animation: fadeSequence 4s ease-in-out 1.7s forwards;
-}
-.txt-2 {
-  animation: fadeSequence 4s ease-in-out 5.7s forwards;
-}
-.txt-3 {
-  animation: fadeSequence 4s ease-in-out 9.7s forwards;
-}
-.txt-4 {
-  animation: fadeSequence 4s ease-in-out 13.7s forwards;
-}
-.txt-5 {
-  animation: finalFade 2s ease-in-out 17.7s forwards;
-}
-
-@keyframes finalFade {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -30%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-
-/* --- Insekten Basis-Positionierung --- */
 .bee,
 .bumblebee,
 .butterfly {
@@ -516,46 +168,59 @@ main {
 .bumblebee {
   left: var(--x);
   top: var(--y);
-  transition:
-    top 5s ease-in-out,
-    left 5s ease-in-out,
-    transform 1.2s ease-in-out;
 }
 
-/* --- Bienen & Hummeln --- */
+/* --- Bienen & Hummeln (Senior GPU-Accelerated Animation) --- */
 .bee {
   font-size: clamp(20px, 4vw, 30px);
-  opacity: 0.9;
-  z-index: 1;
-  animation: pulse 3.5s infinite ease-in-out;
+  animation: superSchwirren 6s infinite ease-in-out alternate;
 }
 
 .bumblebee {
   font-size: clamp(28px, 5vw, 42px);
-  opacity: 0.95;
-  z-index: 1;
-  animation: bumblePulse 4.5s infinite ease-in-out;
+  animation: hummelSchwirren 8s infinite ease-in-out alternate;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.8;
+.bee:nth-child(2n) {
+  animation-delay: -1.5s;
+}
+.bee:nth-child(3n) {
+  animation-delay: -3s;
+}
+.bumblebee:nth-child(2n) {
+  animation-delay: -2s;
+}
+
+@keyframes superSchwirren {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(40px, -50px) scale(1.05) rotate(5deg);
   }
   50% {
-    opacity: 1;
+    transform: translate(-30px, -20px) scale(0.95) rotate(-10deg);
+  }
+  75% {
+    transform: translate(50px, 30px) scale(1) rotate(8deg);
+  }
+  100% {
+    transform: translate(-15px, -60px) scale(1.02) rotate(-5deg);
   }
 }
 
-@keyframes bumblePulse {
-  0%,
-  100% {
-    opacity: 0.85;
-    transform: scale(1);
+@keyframes hummelSchwirren {
+  0% {
+    transform: translate(0, 0) scale(1);
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
+  33% {
+    transform: translate(-50px, 40px) scale(1.03) rotate(-8deg);
+  }
+  66% {
+    transform: translate(40px, -40px) scale(0.97) rotate(6deg);
+  }
+  100% {
+    transform: translate(-15px, -25px) scale(1);
   }
 }
 
@@ -573,7 +238,6 @@ main {
   height: 100%;
 }
 
-/* Senior-Feature: Sachtes Schweben hoch/runter + sanftes Driften LINKS nach RECHTS! */
 .falter-schweben {
   animation: sachteSchwingen 6s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
@@ -588,7 +252,6 @@ main {
   }
 }
 
-/* Der 3D-Flügelschlag */
 .links {
   animation: flügelschlagLinks 0.23s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
@@ -631,7 +294,7 @@ main {
   }
 }
 
-/* --- Content-Section (Unterseiten) --- */
+/* --- Content-Section (Unterseiten - Sicher im Vordergrund) --- */
 .content-section {
   text-align: center;
   width: 100%;
@@ -642,19 +305,72 @@ main {
   backdrop-filter: blur(5px);
   box-sizing: border-box;
   margin: 20px 0;
-  z-index: 6;
+  z-index: 6; /* Setzt den Text-Inhalt VOR die fliegenden Hintergrund-Bienen */
 }
 
-.content-section h1 {
+/* --- Bildergalerie Grid-System & Hover-Glow --- */
+.gallery-container {
+  max-width: 1000px;
+  width: 95%;
+}
+
+.gallery-subtitle {
+  margin-bottom: 30px;
+  color: #a5f3fc;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.gallery-item {
+  position: relative;
+  background: #111;
+  border: 2px solid #002233;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.04) translateY(-4px);
+  border-color: #00ffff;
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 0.5),
+    0 10px 20px rgba(0, 0, 0, 0.7);
+}
+
+.image-caption {
+  padding: 12px;
+  background: rgba(5, 5, 5, 0.85);
+  font-size: 0.95rem;
+  font-weight: bold;
   color: #00ffff;
-  font-size: clamp(2rem, 5vw, 2.5rem);
-  margin-bottom: 20px;
-  text-transform: uppercase;
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  text-align: center;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-.content-section p {
-  font-size: clamp(1rem, 3.5vw, 1.2rem);
-  line-height: 1.5;
+.gallery-item:hover .image-caption {
+  background: #00ffff;
+  color: #000;
 }
 
 /* --- PayPal Button Styling --- */
@@ -680,20 +396,15 @@ main {
   animation: none;
 }
 
-/* --- Donate-Spezifisch: Der absolute MONSTER-FALTER (+1,5x größer!) --- */
-/* --- Donate-Spezifisch: Der absolute MONSTER-FALTER (+1,5x größer & höher gesetzt) --- */
+/* --- Donate-Spezifisch: Der absolute MONSTER-FALTER --- */
 .content-section ~ .butterfly {
-  width: clamp(500px, 80vw, 900px); /* Gewaltige Größe, perfekt skaliert */
+  width: clamp(500px, 80vw, 900px);
   height: clamp(500px, 80vw, 900px);
   z-index: 2;
-
   margin-top: 5px;
   position: relative;
   left: 50%;
-
-  /* Senior-Fix: Bringt den Schmetterling um etwa die Hälfte seiner Größe weiter nach oben */
   top: -150px;
-
   transform: translateX(-50%);
 }
 
@@ -720,11 +431,9 @@ main {
   filter: blur(60px);
   transform-origin: top center;
   opacity: 0;
-
   left: calc(var(--i) * 11% - 5%);
   transform: rotate(calc(var(--i) * 11deg - 45deg));
   border-bottom-color: rgba(255, calc(255 - (var(--i) * 20)), 0, 0.13);
-
   animation: rayMultiGluehen 18s infinite ease-in-out alternate;
   animation-delay: calc(var(--i) * 0.7s);
 }
@@ -741,4 +450,57 @@ main {
     opacity: 0.05;
     transform: scaleX(1.2);
   }
+}
+/* --- About Us: Spezifisches Asymmetrisches Layout --- */
+.about-main {
+  flex-direction: row; /* Richtet Falter und Text nebeneinander aus */
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Der große Falter auf der linken Seite */
+.about-butterfly {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  width: clamp(
+    300px,
+    35vw,
+    500px
+  ); /* Gewaltige Größe, aber perfekt balanciert */
+  height: clamp(300px, 35vw, 500px);
+  z-index: 2;
+  order: 1; /* Garantiert, dass er links steht */
+}
+
+.about-content {
+  max-width: 550px;
+  text-align: left; /* Edler linksbündiger Text für die Inhaltsseite */
+  order: 2;
+}
+
+.about-content h1 {
+  text-align: left; /* Überschrift matcht den Text */
+}
+
+/* --- About Us: Sauberes, zentriertes Layout --- */
+.about-main {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content {
+  max-width: 600px;
+  text-align: center;
+}
+
+.about-content h1 {
+  text-align: center;
 }
