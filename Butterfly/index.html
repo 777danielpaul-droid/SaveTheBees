@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon-Overdrive Falter - Abstract Ghost Glow</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <svg
+      width="600"
+      height="600"
+      viewBox="0 0 400 400"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="fluegelBasis" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#003333" />
+          <stop offset="20%" stop-color="#00a8a8" />
+          <stop offset="60%" stop-color="#00ffff" />
+          <stop offset="100%" stop-color="#33ffff" />
+        </linearGradient>
+
+        <linearGradient id="falterKoerper" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#000000" />
+          <stop offset="50%" stop-color="#004d4d" />
+          <stop offset="100%" stop-color="#000000" />
+        </linearGradient>
+
+        <filter id="ghostGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="0.7" result="blur1" />
+          <feGaussianBlur
+            in="SourceGraphic"
+            stdDeviation="0.3"
+            result="blur2"
+          />
+          <feMerge>
+            <feMergeNode in="blur1" />
+            <feMergeNode in="blur2" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <clipPath id="innerMaskLinks">
+          <path
+            d="M 200 200 C 150 130, 80 100, 50 140 C 30 170, 70 230, 200 230 Z"
+          />
+          <path
+            d="M 200 230 C 130 230, 70 260, 90 310 C 110 340, 160 320, 200 245 Z"
+          />
+        </clipPath>
+
+        <clipPath id="innerMaskRechts">
+          <path
+            d="M 200 200 C 250 130, 320 100, 350 140 C 370 170, 330 230, 200 230 Z"
+          />
+          <path
+            d="M 200 230 C 270 230, 330 260, 310 310 C 290 340, 240 320, 200 245 Z"
+          />
+        </clipPath>
+      </defs>
+
+      <g class="falter-schweben">
+        <g class="fluegel-box links">
+          <path
+            d="M 200 200 C 150 130, 80 100, 50 140 C 30 170, 70 230, 200 230 Z"
+            fill="url(#fluegelBasis)"
+          />
+          <path
+            d="M 200 230 C 130 230, 70 260, 90 310 C 110 340, 160 320, 200 245 Z"
+            fill="url(#fluegelBasis)"
+          />
+
+          <g clip-path="url(#innerMaskLinks)" filter="url(#ghostGlow)">
+            <circle cx="190" cy="190" r="2.5" fill="#3f37c9" />
+            <circle cx="180" cy="195" r="4.0" fill="#560bad" />
+            <circle cx="170" cy="180" r="1.5" fill="#00b4d8" />
+            <circle cx="175" cy="210" r="3.0" fill="#00f5d4" />
+            <circle cx="160" cy="190" r="5.0" fill="#3f37c9" />
+            <circle cx="165" cy="215" r="2.2" fill="#560bad" />
+            <circle cx="150" cy="175" r="3.5" fill="#00b4d8" />
+            <circle cx="155" cy="200" r="1.8" fill="#00f5d4" />
+            <circle cx="140" cy="185" r="4.2" fill="#3f37c9" />
+            <circle cx="145" cy="210" r="2.5" fill="#560bad" />
+            <circle cx="135" cy="160" r="5.5" fill="#00b4d8" />
+            <circle cx="130" cy="195" r="3.2" fill="#00f5d4" />
+            <circle cx="120" cy="175" r="2.0" fill="#3f37c9" />
+            <circle cx="125" cy="205" r="4.5" fill="#560bad" />
+            <circle cx="115" cy="150" r="3.0" fill="#00b4d8" />
+            <circle cx="110" cy="185" r="5.2" fill="#00f5d4" />
+            <circle cx="100" cy="165" r="4.0" fill="#3f37c9" />
+            <circle cx="105" cy="190" r="1.5" fill="#560bad" />
+            <circle cx="95" cy="145" r="5.0" fill="#00b4d8" />
+            <circle cx="90" cy="170" r="2.8" fill="#00f5d4" />
+            <circle cx="80" cy="155" r="3.5" fill="#3f37c9" />
+            <circle cx="85" cy="180" r="4.2" fill="#560bad" />
+            <circle cx="75" cy="140" r="2.2" fill="#00b4d8" />
+            <circle cx="70" cy="160" r="5.0" fill="#00f5d4" />
+            <circle cx="60" cy="145" r="4.5" fill="#3f37c9" />
+            <circle cx="65" cy="165" r="1.8" fill="#560bad" />
+            <circle cx="55" cy="150" r="3.2" fill="#00b4d8" />
+            <circle cx="50" cy="155" r="2.0" fill="#00f5d4" />
+
+            <circle cx="185" cy="175" r="3.0" fill="#00b4d8" />
+            <circle cx="170" cy="195" r="2.0" fill="#00f5d4" />
+            <circle cx="160" cy="165" r="4.5" fill="#560bad" />
+            <circle cx="150" cy="215" r="3.8" fill="#3f37c9" />
+            <circle cx="140" cy="145" r="1.5" fill="#00b4d8" />
+            <circle cx="135" cy="170" r="5.0" fill="#00f5d4" />
+            <circle cx="125" cy="135" r="3.5" fill="#560bad" />
+            <circle cx="115" cy="170" r="2.2" fill="#3f37c9" />
+            <circle cx="105" cy="155" r="4.8" fill="#00b4d8" />
+            <circle cx="95" cy="130" r="2.0" fill="#00f5d4" />
+            <circle cx="85" cy="155" r="3.2" fill="#560bad" />
+            <circle cx="75" cy="125" r="4.0" fill="#3f37c9" />
+            <circle cx="145" cy="135" r="2.5" fill="#3f37c9" />
+            <circle cx="130" cy="150" r="3.8" fill="#560bad" />
+            <circle cx="110" cy="140" r="1.9" fill="#00b4d8" />
+            <circle cx="100" cy="150" r="4.2" fill="#00f5d4" />
+            <circle cx="155" cy="155" r="3.0" fill="#00b4d8" />
+            <circle cx="120" cy="160" r="2.5" fill="#3f37c9" />
+            <circle cx="90" cy="145" r="3.6" fill="#560bad" />
+            <circle cx="80" cy="170" r="1.5" fill="#00f5d4" />
+
+            <circle cx="195" cy="235" r="3.5" fill="#560bad" />
+            <circle cx="185" cy="240" r="5.0" fill="#3f37c9" />
+            <circle cx="175" cy="230" r="2.0" fill="#00f5d4" />
+            <circle cx="180" cy="255" r="4.2" fill="#00b4d8" />
+            <circle cx="170" cy="245" r="2.5" fill="#560bad" />
+            <circle cx="165" cy="265" r="4.8" fill="#3f37c9" />
+            <circle cx="155" cy="235" r="3.0" fill="#00f5d4" />
+            <circle cx="160" cy="280" r="1.8" fill="#00b4d8" />
+            <circle cx="150" cy="250" r="5.2" fill="#560bad" />
+            <circle cx="145" cy="275" r="2.2" fill="#3f37c9" />
+            <circle cx="135" cy="245" r="4.0" fill="#00f5d4" />
+            <circle cx="140" cy="295" r="3.5" fill="#00b4d8" />
+            <circle cx="130" cy="260" r="2.8" fill="#560bad" />
+            <circle cx="125" cy="285" r="5.5" fill="#3f37c9" />
+            <circle cx="115" cy="255" r="1.5" fill="#00f5d4" />
+            <circle cx="120" cy="305" r="3.0" fill="#00b4d8" />
+            <circle cx="110" cy="270" r="4.0" fill="#560bad" />
+            <circle cx="105" cy="290" r="2.5" fill="#3f37c9" />
+            <circle cx="95" cy="280" r="3.8" fill="#00f5d4" />
+            <circle cx="100" cy="300" r="1.2" fill="#00b4d8" />
+            <circle cx="155" cy="260" r="3.2" fill="#00b4d8" />
+            <circle cx="145" cy="260" r="1.9" fill="#00f5d4" />
+            <circle cx="135" cy="270" r="4.5" fill="#3f37c9" />
+            <circle cx="125" cy="270" r="2.8" fill="#560bad" />
+            <circle cx="175" cy="275" r="4.0" fill="#00f5d4" />
+            <circle cx="150" cy="290" r="2.5" fill="#00b4d8" />
+            <circle cx="135" cy="310" r="3.3" fill="#560bad" />
+            <circle cx="165" cy="300" r="2.1" fill="#3f37c9" />
+          </g>
+
+          <g
+            stroke="#000000"
+            stroke-width="4"
+            fill="none"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          >
+            <path
+              d="M 200 200 C 150 130, 80 100, 50 140 C 30 170, 70 230, 200 230 Z"
+            />
+            <path
+              d="M 200 230 C 130 230, 70 260, 90 310 C 110 340, 160 320, 200 245 Z"
+            />
+          </g>
+        </g>
+
+        <g class="falter-box rechts">
+          <path
+            d="M 200 200 C 250 130, 320 100, 350 140 C 370 170, 330 230, 200 230 Z"
+            fill="url(#fluegelBasis)"
+          />
+          <path
+            d="M 200 230 C 270 230, 330 260, 310 310 C 290 340, 240 320, 200 245 Z"
+            fill="url(#fluegelBasis)"
+          />
+
+          <g clip-path="url(#innerMaskRechts)" filter="url(#ghostGlow)">
+            <circle cx="210" cy="190" r="2.5" fill="#3f37c9" />
+            <circle cx="220" cy="195" r="4.0" fill="#560bad" />
+            <circle cx="230" cy="180" r="1.5" fill="#00b4d8" />
+            <circle cx="225" cy="210" r="3.0" fill="#00f5d4" />
+            <circle cx="240" cy="190" r="5.0" fill="#3f37c9" />
+            <circle cx="235" cy="215" r="2.2" fill="#560bad" />
+            <circle cx="250" cy="175" r="3.5" fill="#00b4d8" />
+            <circle cx="245" cy="200" r="1.8" fill="#00f5d4" />
+            <circle cx="260" cy="185" r="4.2" fill="#3f37c9" />
+            <circle cx="255" cy="210" r="2.5" fill="#560bad" />
+            <circle cx="275" cy="160" r="5.5" fill="#00b4d8" />
+            <circle cx="270" cy="195" r="3.2" fill="#00f5d4" />
+            <circle cx="280" cy="175" r="2.0" fill="#3f37c9" />
+            <circle cx="275" cy="205" r="4.5" fill="#560bad" />
+            <circle cx="285" cy="150" r="3.0" fill="#00b4d8" />
+            <circle cx="290" cy="185" r="5.2" fill="#00f5d4" />
+            <circle cx="300" cy="165" r="4.0" fill="#3f37c9" />
+            <circle cx="295" cy="190" r="1.5" fill="#560bad" />
+            <circle cx="305" cy="145" r="5.0" fill="#00b4d8" />
+            <circle cx="310" cy="170" r="2.8" fill="#00f5d4" />
+            <circle cx="320" cy="155" r="3.5" fill="#3f37c9" />
+            <circle cx="315" cy="180" r="4.2" fill="#560bad" />
+            <circle cx="325" cy="140" r="2.2" fill="#00b4d8" />
+            <circle cx="330" cy="160" r="5.0" fill="#00f5d4" />
+            <circle cx="340" cy="145" r="4.5" fill="#3f37c9" />
+            <circle cx="335" cy="165" r="1.8" fill="#560bad" />
+            <circle cx="345" cy="150" r="3.2" fill="#00b4d8" />
+            <circle cx="350" cy="155" r="2.0" fill="#00f5d4" />
+
+            <circle cx="215" cy="175" r="3.0" fill="#00b4d8" />
+            <circle cx="230" cy="195" r="2.0" fill="#00f5d4" />
+            <circle cx="240" cy="165" r="4.5" fill="#560bad" />
+            <circle cx="250" cy="215" r="3.8" fill="#3f37c9" />
+            <circle cx="260" cy="145" r="1.5" fill="#00b4d8" />
+            <circle cx="265" cy="170" r="5.0" fill="#00f5d4" />
+            <circle cx="275" cy="135" r="3.5" fill="#560bad" />
+            <circle cx="285" cy="170" r="2.2" fill="#3f37c9" />
+            <circle cx="295" cy="155" r="4.8" fill="#00b4d8" />
+            <circle cx="305" cy="130" r="2.0" fill="#00f5d4" />
+            <circle cx="315" cy="155" r="3.2" fill="#560bad" />
+            <circle cx="325" cy="125" r="4.0" fill="#3f37c9" />
+            <circle cx="255" cy="135" r="2.5" fill="#3f37c9" />
+            <circle cx="270" cy="150" r="3.8" fill="#560bad" />
+            <circle cx="290" cy="140" r="1.9" fill="#00b4d8" />
+            <circle cx="300" cy="150" r="4.2" fill="#00f5d4" />
+            <circle cx="245" cy="155" r="3.0" fill="#00b4d8" />
+            <circle cx="280" cy="160" r="2.5" fill="#3f37c9" />
+            <circle cx="310" cy="145" r="3.6" fill="#560bad" />
+            <circle cx="320" cy="170" r="1.5" fill="#00f5d4" />
+
+            <circle cx="205" cy="235" r="3.5" fill="#560bad" />
+            <circle cx="215" cy="240" r="5.0" fill="#3f37c9" />
+            <circle cx="225" cy="230" r="2.0" fill="#00f5d4" />
+            <circle cx="220" cy="255" r="4.2" fill="#00b4d8" />
+            <circle cx="230" cy="245" r="2.5" fill="#560bad" />
+            <circle cx="235" cy="265" r="4.8" fill="#3f37c9" />
+            <circle cx="245" cy="235" r="3.0" fill="#00f5d4" />
+            <circle
+              cx="240"
+              stroke=""
+              cx="240"
+              cy="280"
+              r="1.8"
+              fill="#00b4d8"
+            />
+            <circle cx="250" cy="250" r="5.2" fill="#560bad" />
+            <circle cx="255" cy="275" r="2.2" fill="#3f37c9" />
+            <circle cx="265" cy="245" r="4.0" fill="#00f5d4" />
+            <circle cx="260" cy="295" r="3.5" fill="#00b4d8" />
+            <circle cx="270" cy="260" r="2.8" fill="#560bad" />
+            <circle cx="275" cy="285" r="5.5" fill="#3f37c9" />
+            <circle cx="285" cy="255" r="1.5" fill="#00f5d4" />
+            <circle cx="280" cy="305" r="3.0" fill="#00b4d8" />
+            <circle cx="290" cy="270" r="4.0" fill="#560bad" />
+            <circle cx="295" cy="290" r="2.5" fill="#3f37c9" />
+            <circle cx="305" cy="280" r="3.8" fill="#00f5d4" />
+            <circle cx="300" cy="300" r="1.2" fill="#00b4d8" />
+            <circle cx="245" cy="260" r="3.2" fill="#00b4d8" />
+            <circle cx="255" cy="260" r="1.9" fill="#00f5d4" />
+            <circle cx="265" cy="270" r="4.5" fill="#3f37c9" />
+            <circle cx="275" cy="270" r="2.8" fill="#560bad" />
+            <circle cx="225" cy="275" r="4.0" fill="#00f5d4" />
+            <circle cx="250" cy="290" r="2.5" fill="#00b4d8" />
+            <circle cx="265" cy="310" r="3.3" fill="#560bad" />
+            <circle cx="235" cy="300" r="2.1" fill="#3f37c9" />
+          </g>
+
+          <g
+            stroke="#000000"
+            stroke-width="4"
+            fill="none"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          >
+            <path
+              d="M 200 200 C 250 130, 320 100, 350 140 C 370 170, 330 230, 200 230 Z"
+            />
+            <path
+              d="M 200 230 C 270 230, 330 260, 310 310 C 290 340, 240 320, 200 245 Z"
+            />
+          </g>
+        </g>
+
+        <g class="falter-rumpf">
+          <path
+            d="M 200 210 C 193 230, 193 300, 200 330 C 207 300, 207 230, 200 210 Z"
+            fill="url(#falterKoerper)"
+            stroke="#000"
+            stroke-width="1"
+          />
+          <path
+            d="M 196 192 C 188 158, 160 138, 150 143"
+            stroke="#00a8a8"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <path
+            d="M 204 192 C 212 158, 240 138, 250 143"
+            stroke="#00a8a8"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <circle cx="150" cy="143" r="3" fill="#00ffff" />
+          <circle cx="250" cy="143" r="3" fill="#00ffff" />
+          <circle
+            cx="200"
+            cy="192"
+            r="9"
+            fill="#050505"
+            stroke="#000"
+            stroke-width="1.2"
+          />
+          <circle cx="194" cy="190" r="2.2" fill="#00ffff" />
+          <circle cx="206" cy="190" r="2.2" fill="#00ffff" />
+        </g>
+      </g>
+    </svg>
+  </body>
+</html>

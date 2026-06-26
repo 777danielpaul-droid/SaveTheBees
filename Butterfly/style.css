@@ -1,0 +1,72 @@
+body {
+  background-color: #12161a; /* Edles Dunkelblau-Grau lässt die Farben leuchten */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* --- 1. SCHWEBEN (Der ganze Falter gleitet elegant auf und ab) --- */
+.falter-schweben {
+  animation: sachteSchwingen 4s ease-in-out infinite alternate;
+  transform-origin: 200px 200px;
+}
+
+@keyframes sachteSchwingen {
+  0% {
+    transform: translateY(15px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(-20px) rotate(3deg); /* Leichte Neigung beim Steigen */
+  }
+}
+
+/* --- 2. 3D-FLATTER-EFFEKT (Flügel spiegeln sich zur Mitte) --- */
+.fluegel-box {
+  transition: transform 0.1s ease-in-out;
+}
+
+.links {
+  animation: flügelschlagLinks 0.25s ease-in-out infinite alternate;
+  transform-origin: 200px 200px; /* Drehpunkt exakt an der linken Körperkante */
+}
+
+.rechts {
+  animation: flügelschlagRechts 0.25s ease-in-out infinite alternate;
+  transform-origin: 200px 200px; /* Drehpunkt exakt an der rechten Körperkante */
+}
+
+@keyframes flügelschlagLinks {
+  0% {
+    transform: scaleX(1); /* Flügel voll ausgebreitet */
+  }
+  100% {
+    transform: scaleX(0.15); /* Flügel fast senkrecht nach oben geklappt */
+  }
+}
+
+@keyframes flügelschlagRechts {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0.15);
+  }
+}
+
+/* --- 3. DETAIL-VIBRATION (Körper zittert minimal durch den Flügelschlag) --- */
+.falter-rumpf {
+  animation: rumpfVibe 0.25s ease-in-out infinite alternate;
+  transform-origin: 200px 200px;
+}
+
+@keyframes rumpfVibe {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0.98) translateY(1px);
+  }
+}
