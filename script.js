@@ -63,10 +63,14 @@ function moveButterfly(bf) {
   }, randomTime);
 }
 
+// ==========================================================================
+// MAUS-SCHWÄRM-LOGIK (REQUEST ANIMATION FRAME ARCHITECTURE)
+// ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
   const bees = document.querySelectorAll(".bee");
   const bumbles = document.querySelectorAll(".bumblebee");
   const butterflies = document.querySelectorAll(".butterfly");
+
   if (bees.length > 0) {
     bees.forEach((bee) => {
       setTimeout(() => {
@@ -88,4 +92,71 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 600);
     });
   }
+
+  // 1. Erstelle das Bienen-Element dynamisch im DOM
+  const beeFollower = document.createElement("div");
+  beeFollower.className = "trailing-bee-cursor";
+  document.body.appendChild(beeFollower);
+
+  // Einstellbare Physik-Werte für die Flugbahn
+  let mouseX = 0,
+    mouseY = 0;
+  let beeX = 0,
+    beeY = 0;
+  let angle = 0;
+  const easing = 0.07; // Wie stark die Biene hinterherzieht (kleiner = träger)
+
+  // Maus-Tracking
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  // Mathematische Render-Schleife (Ruckelfrei, GPU-unterstützt)
+  function renderLoop() {
+    // Annäherung berechnen
+    beeX += (mouseX - beeX) * easing;
+    beeY += (mouseY - beeY) * easing;
+
+    // Organische Kreisschwingung berechnen, wenn die Maus steht
+    angle += 0.04;
+    const circleRadius = 24;
+
+    // -32px sorgt für das optische Zentrum des Bildes (angepasst an große Biene)
+    const finalX = beeX + Math.cos(angle) * circleRadius - 32;
+    const finalY = beeY + Math.sin(angle) * circleRadius - 32;
+
+    // Variablen für CSS-Animationen bereitstellen
+    beeFollower.style.setProperty("--bee-x", `${finalX}px`);
+    beeFollower.style.setProperty("--bee-y", `${finalY}px`);
+
+    /* KORREKTUR FÜR RÜCKWÄRTSFLIEGEN:
+       Wenn mouseX > beeX ist (Maus bewegt sich nach rechts), spiegeln wir das Bild jetzt auf -1.
+       Wenn sie sich nach links bewegt, bleibt es bei 1.
+    */
+    const direction = mouseX > beeX ? -1 : 1;
+
+    // Transformieren, solange der Hover-Blinkmodus nicht aktiv ist
+    if (!beeFollower.classList.contains("bee-hovering")) {
+      beeFollower.style.transform = `translate3d(${finalX}px, ${finalY}px, 0) scaleX(${direction})`;
+    }
+
+    requestAnimationFrame(renderLoop);
+  }
+
+  requestAnimationFrame(renderLoop);
+
+  // 2. HOVER-DETEKTION FÜR LINKS UND BUTTONS (Blinken aktivieren)
+  const interactiveTargets = document.querySelectorAll(
+    "a, button, .buy-btn, .paypal-button, .gallery-item",
+  );
+
+  interactiveTargets.forEach((target) => {
+    target.addEventListener("mouseenter", () => {
+      beeFollower.classList.add("bee-hovering");
+    });
+    target.addEventListener("mouseleave", () => {
+      beeFollower.classList.remove("bee-hovering");
+    });
+  });
 });
