@@ -12,6 +12,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  /* DIEÄNDERUNG: Macht das Fenster flexibel für den Footer */
+  display: flex;
+  flex-direction: column;
 }
 
 .bg-sunset {
@@ -24,8 +27,6 @@ body {
 /* ==========================================================================
    KUGELSICHERER SMART-CURSOR EFFECT (SENIOR ARCHITECTURE)
    ========================================================================== */
-
-/* Das Bienen-Element, das dem Cursor hinterherfliegt */
 .trailing-bee-cursor {
   position: fixed;
   top: 0;
@@ -36,13 +37,11 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
-  /* ERHÖHTER Z-INDEX & FIX FÜR UNTERSEITEN: */
   z-index: 99999999 !important;
   will-change: transform;
   transform: translate3d(var(--bee-x, 0px), var(--bee-y, 0px), 0);
 }
 
-/* Wenn du über einen Link hoverst, wird ein schnelleres Blinken/Vibrieren getriggert */
 .trailing-bee-cursor.bee-hovering {
   animation: beeAlertBlink 0.2s infinite alternate ease-in-out;
 }
@@ -76,6 +75,7 @@ nav {
   margin: 0 auto;
   padding: 15px 30px;
   min-height: 50px;
+  z-index: 1;
 }
 
 .nav-links {
@@ -124,13 +124,13 @@ nav a {
   transform: scale(1.15);
 }
 
-.nav-socials a:hover {
+.nav-socials a:hover,
+a:hover {
   animation: blinken 0.6s infinite;
 }
 
 a:hover {
   color: #6600ff;
-  animation: blinken 0.6s infinite;
 }
 
 /* ==========================================================================
@@ -145,7 +145,6 @@ a:hover {
     opacity: 0.4;
   }
 }
-
 @keyframes fadeSequence {
   0% {
     opacity: 0;
@@ -161,7 +160,6 @@ a:hover {
     transform: translate(-50%, -70%);
   }
 }
-
 @keyframes finalFade {
   0% {
     opacity: 0;
@@ -172,7 +170,6 @@ a:hover {
     transform: translate(-50%, -50%);
   }
 }
-
 @keyframes superSchwirren {
   0% {
     transform: translate(0, 0) scale(1) rotate(0deg);
@@ -190,7 +187,6 @@ a:hover {
     transform: translate(-15px, -60px) scale(1.02) rotate(-5deg);
   }
 }
-
 @keyframes hummelSchwirren {
   0% {
     transform: translate(0, 0) scale(1);
@@ -205,7 +201,6 @@ a:hover {
     transform: translate(-15px, -25px) scale(1);
   }
 }
-
 @keyframes sachteSchwingen {
   0% {
     transform: translateY(15px) translateX(-25px) rotate(-3deg);
@@ -214,7 +209,6 @@ a:hover {
     transform: translateY(-20px) translateX(25px) rotate(3deg);
   }
 }
-
 @keyframes flügelschlagLinks {
   0% {
     transform: scaleX(1);
@@ -223,7 +217,6 @@ a:hover {
     transform: scaleX(0.12);
   }
 }
-
 @keyframes flügelschlagRechts {
   0% {
     transform: scaleX(-1);
@@ -232,7 +225,6 @@ a:hover {
     transform: scaleX(-0.12);
   }
 }
-
 @keyframes rumpfVibe {
   0% {
     transform: scaleY(1);
@@ -241,7 +233,6 @@ a:hover {
     transform: scaleY(0.97) translateY(1px);
   }
 }
-
 @keyframes rayMultiGluehen {
   0% {
     opacity: 0.02;
@@ -261,7 +252,8 @@ a:hover {
    ========================================================================== */
 main {
   position: relative;
-  min-height: calc(100vh - 60px);
+  /* GEÄNDERT: flex: 1 drückt den Footer flüssig nach unten */
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -342,17 +334,14 @@ main {
   left: var(--x);
   top: var(--y);
 }
-
 .bee {
   font-size: clamp(20px, 4vw, 30px);
   animation: superSchwirren 6s infinite ease-in-out alternate;
 }
-
 .bumblebee {
   font-size: clamp(28px, 5vw, 42px);
   animation: hummelSchwirren 8s infinite ease-in-out alternate;
 }
-
 .bee:nth-child(2n) {
   animation-delay: -1.5s;
 }
@@ -375,22 +364,18 @@ main {
   width: 100%;
   height: 100%;
 }
-
 .falter-schweben {
   animation: sachteSchwingen 6s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
 }
-
 .links {
   animation: flügelschlagLinks 0.23s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
 }
-
 .rechts {
   animation: flügelschlagRechts 0.23s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
 }
-
 .falter-rumpf {
   animation: rumpfVibe 0.23s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
@@ -427,12 +412,10 @@ main {
   max-width: 1000px;
   width: 95%;
 }
-
 .gallery-subtitle {
   margin-bottom: 30px;
   color: #a5f3fc;
 }
-
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -460,7 +443,6 @@ main {
   display: block;
   transition: opacity 0.4s ease;
 }
-
 .gallery-item:hover {
   transform: scale(1.04) translateY(-4px);
   border-color: #00ffff;
@@ -468,7 +450,6 @@ main {
     0 0 15px rgba(0, 255, 255, 0.5),
     0 10px 20px rgba(0, 0, 0, 0.7);
 }
-
 .image-caption {
   padding: 12px;
   background: rgba(5, 5, 5, 0.85);
@@ -481,7 +462,6 @@ main {
     background 0.3s ease,
     color 0.3s ease;
 }
-
 .gallery-item:hover .image-caption {
   background: #00ffff;
   color: #000;
@@ -521,7 +501,6 @@ main {
   pointer-events: none;
   z-index: 1;
 }
-
 .ray {
   position: absolute;
   top: -200px;
@@ -551,24 +530,20 @@ main {
   max-width: 800px;
   margin: 0 auto;
 }
-
 .about-butterfly {
   position: relative;
   width: clamp(300px, 35vw, 500px);
   height: clamp(300px, 35vw, 500px);
   z-index: 2;
 }
-
 .about-content {
   max-width: 600px;
   text-align: center;
 }
-
 .about-content h1 {
   text-align: center;
 }
 
-/* --- Responsive Media Query --- */
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -581,7 +556,6 @@ main {
     transform: none;
     margin-top: 5px;
   }
-  /* Blendet die Follower-Biene auf Touchscreens aus */
   .trailing-bee-cursor {
     display: none !important;
   }
@@ -597,25 +571,21 @@ main {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   margin: 20px;
 }
-
 .product-img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
-
 .product-title {
   font-size: 1.2rem;
   margin: 15px 0 5px 0;
   color: #333;
 }
-
 .product-price {
   font-weight: bold;
   color: #00b4d8;
   margin-bottom: 15px;
 }
-
 .buy-btn {
   background-color: #111;
   color: white;
@@ -626,66 +596,78 @@ main {
   font-weight: bold;
   transition: background 0.2s;
 }
-
 .buy-btn:hover {
   background-color: #333;
 }
-/* ==========================================================================
-   HUMBLEBEE SINGLE-BACKDROP EFFECT (ULTRAVIOLET SENIOR ARCHITECTURE)
-   ========================================================================== */
 
-/* 1. Wir nutzen den übergeordneten Container der Navigation für den Hintergrund,
-      damit das Wort absolut unikat nur einmal auf der Seite gerendert wird */
-nav {
-  position: relative; /* Bildet die mathematische Basis für die Zentrierung */
-  z-index: 1;
-}
-
-/* 2. Das Pseudoelement wird nun auf die gesamte Leiste angewendet, 
-      wodurch es perfekt zentriert im transparent-grauen Kasten liegt */
+/* HUMBLEBEE SINGLE-BACKDROP EFFECT */
 nav::before {
   content: "HUMBLEBEE";
   position: absolute;
-
-  /* Perfekte, dynamische Zentrierung über die gesamte Breite und Höhe des Headers */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  /* Senior-Styling: Gewaltig, modern und im gewünschten Ultraviolett-Lila */
   font-family: "Arial Black", sans-serif;
-  font-size: clamp(
-    2rem,
-    6vw,
-    4.5rem
-  ); /* Skaliert absolut flüssig mit der Bildschirmgröße */
+  font-size: clamp(2rem, 6vw, 4.5rem);
   font-weight: 900;
-  letter-spacing: 12px; /* Edles, weites Spacing für den modernen Look */
-
-  /* Ultraviolett mit exakt austarierter Halbtransparenz (0.15 = 15% Deckkraft) */
+  letter-spacing: 12px;
   color: rgba(106, 13, 173, 0.47);
-
-  /* Verhindert Textmarkierungen und Klick-Blockaden komplett */
   pointer-events: none;
-  z-index: -1; /* Liegt sicher hinter den Links, aber über dem Header-Hintergrund */
-
-  /* Aktiviert die performante GPU-Blinkanimation (Pulse Effect) */
+  z-index: -1;
   animation: ultravioletPulse 4s ease-in-out infinite;
 }
-
-/* 3. Mathematisch sanfte Animations-Schleife für das leichte, edle Blinken */
 @keyframes ultravioletPulse {
-  0% {
+  0%,
+  100% {
     opacity: 0.25;
     filter: drop-shadow(0 0 0px rgba(138, 43, 226, 0));
   }
   50% {
     opacity: 1;
-    /* Verleiht dem Ultraviolett zur Animationsmitte ein leichtes, mystisches Leuchten */
     filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.4));
   }
-  100% {
-    opacity: 0.25;
-    filter: drop-shadow(0 0 0px rgba(138, 43, 226, 0));
-  }
+}
+
+/* ==========================================================================
+   NUR HIER IST DAS NEUE DESIGN FÜR DEINEN FOOTER BANNER (FEINTUNING)
+   ========================================================================== */
+.bottom-banner {
+  width: 100%;
+  /* TRANSPARENZ ERHÖHT: Von 0.5 auf 0.15 runtergeschraubt für maximale Eleganz */
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(
+    12px
+  ); /* Unschärfe leicht erhöht für den edlen Glas-Effekt */
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08); /* Filigranere Kante */
+  padding: 25px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  margin-top: auto; /* Zwingt den Banner an den unteren Rand */
+}
+
+.bottom-links {
+  display: flex;
+  gap: 40px;
+}
+
+.bottom-links a {
+  color: #00ffff !important; /* Passt perfekt zu deinem Neon-Cyan */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  transition: color 0.3s ease;
+  animation: none !important; /* Verhindert das Blinken von der Navigation */
+}
+
+.bottom-links a:hover {
+  color: #6600ff !important; /* Schickes lila beim Drüberfahren */
+}
+
+/* FIX FÜR DEN REISSENDEN HUMBLEBEE-TEXT IM HINTERGRUND */
+nav::before {
+  z-index: 0 !important; /* Holt den Hintergrundtext vor den Banner-Schatten */
 }
