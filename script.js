@@ -44,8 +44,13 @@ function moveBumbleBee(bumble) {
   }, randomTime);
 }
 
+// ==========================================================================
+// KORRIGIERTE SCHMETTERLINGS-FUNKTION (Mit Absturz-Schutz für Unterseiten)
+// ==========================================================================
 function moveButterfly(bf) {
-  if (!bf) return;
+  // Falls kein Schmetterling auf der Seite existiert, wird die Funktion sofort beendet
+  if (!bf || bf === undefined) return;
+
   const currentX = parseFloat(bf.style.left) || 50;
   const randomX = Math.floor(Math.random() * 85);
   const randomY = Math.floor(Math.random() * 75) + 15;
@@ -126,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const finalX = beeX + Math.cos(angle) * circleRadius - 32;
     const finalY = beeY + Math.sin(angle) * circleRadius - 32;
 
-    // Variablen für CSS-Animationen bereitstellen
+    // Variables für CSS-Animationen bereitstellen
     beeFollower.style.setProperty("--bee-x", `${finalX}px`);
     beeFollower.style.setProperty("--bee-y", `${finalY}px`);
 

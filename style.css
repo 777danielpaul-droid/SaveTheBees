@@ -30,20 +30,16 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 111px; /* Perfekte, gut sichtbare Größe */
+  width: 111px;
   height: 111px;
-  background-image: url("CursorBee.png"); /* Korrekter Dateiname */
+  background-image: url("CursorBee.png");
   background-size: contain;
   background-repeat: no-repeat;
-  pointer-events: none; /* Wichtig: Klicks gehen ungehindert durch die Biene durch */
-  z-index: 999999; /* Bleibt immer über allen Elementen */
-  will-change: transform; /* Schaltet Hardware-Beschleunigung auf der GPU frei */
-  transform: translate3d(
-    -100px,
-    -100px,
-    0
-  ); /* Startet außerhalb des sichtbaren Bereichs */
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+  /* ERHÖHTER Z-INDEX & FIX FÜR UNTERSEITEN: */
+  z-index: 99999999 !important;
+  will-change: transform;
+  transform: translate3d(var(--bee-x, 0px), var(--bee-y, 0px), 0);
 }
 
 /* Wenn du über einen Link hoverst, wird ein schnelleres Blinken/Vibrieren getriggert */
