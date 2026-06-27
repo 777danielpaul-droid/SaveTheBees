@@ -668,15 +668,96 @@ main {
   }
 }
 
+./* ==========================================================================
+   NEON-DESIGN FÜR DEINE PRODUKTKARTEN (CYBER SHOP)
+   ========================================================================== */
+.shop-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 6;
+  margin: 40px 0;
+}
+
 .product-card {
-  font-family: sans-serif;
-  border: 1px solid #e0e0e0;
-  padding: 20px;
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(8px);
+  border: 2px solid #6600ff !important; /* Lila Rahmen passend zur Story */
+  padding: 25px !important;
+  border-radius: 16px !important;
   text-align: center;
-  max-width: 280px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin: 20px;
+  max-width: 290px;
+  box-shadow: 0 4px 20px rgba(102, 0, 255, 0.3) !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+  box-sizing: border-box;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 25px #6600ff !important;
+  border-color: #00ffff !important; /* Wird beim Hovern Türkis */
+}
+
+.product-img-wrapper {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #111;
+}
+
+.product-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+.product-title {
+  font-size: 1.25rem !important;
+  font-family: Arial, sans-serif;
+  margin: 15px 0 8px 0 !important;
+  color: #00ffff !important; /* Perfektes Türkis */
+  text-shadow: 0 0 3px #6600ff !important;
+  font-weight: bold;
+}
+
+.product-price {
+  font-weight: bold !important;
+  font-family: Arial, sans-serif;
+  font-size: 1.2rem;
+  color: #ffffff !important;
+  margin-bottom: 20px !important;
+}
+
+/* DIE KAUFEN-BUTTONS IM INTERAKTIVEN NEON-STIL */
+.buy-btn {
+  background: rgba(0, 255, 255, 0.05) !important;
+  color: #00ffff !important;
+  border: 2px solid #00ffff !important;
+  padding: 12px 20px !important;
+  border-radius: 30px !important;
+  width: 100% !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.2) !important;
+}
+
+.buy-btn:hover {
+  background: #00ffff !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px #00ffff !important;
 }
 .product-img {
   max-width: 100%;
@@ -736,7 +817,7 @@ nav::before {
 }
 
 /* ==========================================================================
-   NUR HIER IST DAS NEUE DESIGN FÜR DEINEN FOOTER BANNER (MIT EIGENEM SCHRIFTZUG)
+   Footer Styles
    ========================================================================== */
 div.bottom-banner {
   position: relative; /* Wichtig, damit das neue Wort sich hier unten ausrichtet */

@@ -9,10 +9,6 @@
       rel="stylesheet"
       href="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.css"
     />
-    <script
-      async
-      src="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.js"
-    ></script>
   </head>
   <body class="bg-flowers">
     <header>
@@ -74,32 +70,52 @@
         <div class="bumblebee" style="--x: 40%; --y: 70%">🐝</div>
       </div>
 
-      <div class="product-card">
-        <img
-          src="https://via.placeholder.com/250"
-          alt="Cooles Shirt"
-          class="product-img"
-        />
+      <div class="shop-grid">
+        <div class="product-card">
+          <div class="product-img-wrapper">
+            <img
+              src="https://via.placeholder.com/250"
+              alt="Cooles Shirt"
+              class="product-img"
+            />
+          </div>
 
-        <h3 class="product-title">Stylisches Entwickler-Shirt</h3>
-        <p class="product-price">24,99 €</p>
+          <h3 class="product-title">Stylisches Entwickler-Shirt</h3>
+          <p class="product-price">24,99 €</p>
 
-        <button
-          class="snipcart-add-item buy-btn"
-          data-item-id="shirt-01"
-          data-item-name="Stylisches Entwickler-Shirt"
-          data-item-price="24.99"
-          data-item-url="/"
-          data-item-custom1-name="Größe"
-          data-item-custom1-options="S|M|L|XL"
-        >
-          In den Warenkorb
-        </button>
+          <button
+            class="snipcart-add-item buy-btn"
+            data-item-id="shirt-01"
+            data-item-name="Stylisches Entwickler-Shirt"
+            data-item-price="24.99"
+            data-item-url=""
+            data-item-has-taxes-included="true"
+            data-item-custom1-name="Größe"
+            data-item-custom1-options="S|M|L|XL"
+          >
+            In den Warenkorb ➔
+          </button>
+        </div>
       </div>
     </main>
-    <div id="snipcart" data-api-key="111" hidden></div>
+
+    <div class="bottom-banner">
+      <div class="bottom-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutzbestimmungen</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+
+    <div
+      id="snipcart"
+      data-api-key="YjYxNGRhNzEtNzE0My00MWRiLWFmYmYtNGMwMzg4Y2M3YzU2NjM4MjM4NDY3MDU0NzY0NzY4"
+      hidden
+    ></div>
+    <script
+      async
+      src="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.js"
+    ></script>
     <script src="script.js"></script>
-  </body>
-</html>
   </body>
 </html>
