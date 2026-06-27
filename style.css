@@ -381,15 +381,27 @@ main {
   transform-origin: 200px 200px;
 }
 
+/* KORREKTUR: Hält den Riesen-Falter auf Unterseiten perfekt zentriert */
 .content-section ~ .butterfly {
-  width: clamp(500px, 80vw, 900px);
-  height: clamp(500px, 80vw, 900px);
+  width: clamp(
+    350px,
+    70vw,
+    750px
+  ); /* Leicht angepasst, damit er nicht den ganzen Screen sprengt */
+  height: clamp(350px, 70vw, 750px);
   z-index: 2;
-  margin-top: 5px;
+  margin-top: 20px;
   position: relative;
-  left: 50%;
-  top: -150px;
-  transform: translateX(-50%);
+
+  /* Garantiert absolute Zentrierung ohne mathematische Drifts */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  /* Sanfte Höhenanpassung statt starrem Verschieben */
+  top: 0 !important;
 }
 
 /* ==========================================================================
@@ -629,45 +641,74 @@ nav::before {
 }
 
 /* ==========================================================================
-   NUR HIER IST DAS NEUE DESIGN FÜR DEINEN FOOTER BANNER (FEINTUNING)
+   NUR HIER IST DAS NEUE DESIGN FÜR DEINEN FOOTER BANNER (MIT EIGENEM SCHRIFTZUG)
    ========================================================================== */
-.bottom-banner {
-  width: 100%;
-  /* TRANSPARENZ ERHÖHT: Von 0.5 auf 0.15 runtergeschraubt für maximale Eleganz */
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(
-    12px
-  ); /* Unschärfe leicht erhöht für den edlen Glas-Effekt */
-  -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08); /* Filigranere Kante */
-  padding: 25px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  margin-top: auto; /* Zwingt den Banner an den unteren Rand */
+div.bottom-banner {
+  position: relative; /* Wichtig, damit das neue Wort sich hier unten ausrichtet */
+  width: 100% !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 25px 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 10 !important;
+  margin-top: auto !important;
 }
 
-.bottom-links {
-  display: flex;
-  gap: 40px;
+div.bottom-banner div.bottom-links {
+  display: flex !important;
+  gap: 40px !important;
+  z-index: 2 !important; /* Setzt die Impressum-Links sicher VOR das neue Wort */
 }
 
-.bottom-links a {
-  color: #00ffff !important; /* Passt perfekt zu deinem Neon-Cyan */
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: Arial, sans-serif;
-  transition: color 0.3s ease;
-  animation: none !important; /* Verhindert das Blinken von der Navigation */
+div.bottom-banner div.bottom-links a {
+  color: #00ffff !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+  font-size: 15px !important;
+  font-family: Arial, sans-serif !important;
+  animation: none !important;
+  border: none !important;
+  background: none !important;
 }
 
-.bottom-links a:hover {
-  color: #6600ff !important; /* Schickes lila beim Drüberfahren */
+div.bottom-banner div.bottom-links a:hover {
+  color: #6600ff !important;
 }
 
-/* FIX FÜR DEN REISSENDEN HUMBLEBEE-TEXT IM HINTERGRUND */
+/* DEIN NEUER, ZWEITER SCHRIFTZUG EXKLUSIV FÜR DEN FOOTER */
+div.bottom-banner::before {
+  content: "HUMBLEBEE" !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font-family: "Arial Black", sans-serif !important;
+  font-size: clamp(2rem, 6vw, 4.5rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 12px !important;
+  color: rgba(
+    106,
+    13,
+    173,
+    0.47
+  ) !important; /* Exakt dein originales Ultraviolett-Lila */
+  pointer-events: none !important;
+  z-index: 1 !important; /* Liegt perfekt hinter den Footer-Links */
+  animation: ultravioletPulse 4s ease-in-out infinite !important; /* Pulsiert genau wie das obere */
+}
+
+/* HEADER-RESET: Wir stellen den Originalzustand oben im Menü komplett wieder her */
+header {
+  position: relative !important;
+  z-index: 10 !important;
+}
+nav {
+  z-index: 1 !important;
+}
 nav::before {
-  z-index: 0 !important; /* Holt den Hintergrundtext vor den Banner-Schatten */
+  z-index: -1 !important;
 }
