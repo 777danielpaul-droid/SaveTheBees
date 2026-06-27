@@ -8,11 +8,16 @@ body {
   background-attachment: fixed;
   margin: 0;
   font-family: Arial, sans-serif;
-  color: white;
+
+  /* HIER: Von weiß auf Türkis mit lila Glow gewechselt */
+  color: #00ffff;
+  text-shadow:
+    0 0 3px #6600ff,
+    1px 1px 2px rgba(0, 0, 0, 0.8);
+
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  /* DIEÄNDERUNG: Macht das Fenster flexibel für den Footer */
   display: flex;
   flex-direction: column;
 }
@@ -61,8 +66,8 @@ body {
    2. HEADER & NAVIGATION
    ========================================================================== */
 header {
-  position: relative;
-  z-index: 10;
+  position: relative !important;
+  z-index: 10 !important;
   background: rgba(0, 0, 0, 0.5);
 }
 
@@ -75,7 +80,7 @@ nav {
   margin: 0 auto;
   padding: 15px 30px;
   min-height: 50px;
-  z-index: 1;
+  z-index: 1 !important;
 }
 
 .nav-links {
@@ -252,7 +257,6 @@ a:hover {
    ========================================================================== */
 main {
   position: relative;
-  /* GEÄNDERT: flex: 1 drückt den Footer flüssig nach unten */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -291,7 +295,6 @@ main {
   pointer-events: none;
 }
 
-/* DAS EFFIZIENTE TIMING FÜR DEINEN KOMPLETTEN TEXTBLOCK */
 .txt-1 {
   animation: fadeSequence 4s ease-in-out 1.7s forwards;
 }
@@ -304,21 +307,13 @@ main {
 .txt-4 {
   animation: fadeSequence 4s ease-in-out 13.7s forwards;
 }
-
-/* txt-5 blendet nach 4 Sekunden aus, um Platz für die Geschichte zu machen */
 .txt-5 {
   animation: fadeSequence 4s ease-in-out 17.7s forwards;
 }
 
-/* DEIN NEUER GESAMT-TEXTBLOCK (txt-6):
-   Er startet bei 21.7 Sekunden mit 'finalFade' und bleibt FÜR IMMER stehen! */
 /* ==========================================================================
    NEON-DESIGN FÜR DAS BUCH-BLÄTTER-SYSTEM (STORY-PAGES)
    ========================================================================== */
-
-/* ==========================================================================
-   STORY-TEXT IN DEINEM LEUCHTENDEN TÜRKIS (CYAN)
-   ========================================================================= */
 .story-page {
   display: none !important;
   position: relative !important;
@@ -340,40 +335,36 @@ main {
   color: #00ffff !important;
   font-size: clamp(0.95rem, 2.5vw, 1.25rem) !important;
 
-  /* LILA TEXTSCHATTEN: Macht das Türkis extrem plastisch und perfekt lesbar */
+  /* LILA TEXTSCHATTEN */
   text-shadow:
     0 0 4px #6600ff,
     1px 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* Aktiviert die Sichtbarkeit der aktuellen Seite */
 .story-page.active-page {
   display: flex !important;
 }
 
-/* Seite 1 blendet sich nach der thank-you-Sequenz ein */
 #page1.active-page {
   animation: finalFade 2s ease-in-out 21.7s forwards;
 }
 
-/* DIE SCHICKEN NEON-BUTTONS */
 .story-btn {
   margin-top: 25px !important;
   padding: 12px 26px !important;
   background: rgba(0, 255, 255, 0.05) !important;
-  border: 2px solid #00ffff !important; /* Knalliges Cyan */
+  border: 2px solid #00ffff !important;
   color: #00ffff !important;
   font-weight: bold !important;
   font-size: 0.95rem !important;
   font-family: Arial, sans-serif !important;
-  border-radius: 30px !important; /* Schön abgerundet */
+  border-radius: 30px !important;
   cursor: pointer !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   text-shadow: none !important;
   box-shadow: 0 0 5px rgba(0, 255, 255, 0.2) !important;
 }
 
-/* Leucht-Effekt beim Drüberfahren (Hover) */
 .story-btn:hover {
   background: #00ffff !important;
   color: #000000 !important;
@@ -381,7 +372,6 @@ main {
   transform: scale(1.05) !important;
 }
 
-/* Der Schließen-Button kriegt dein passendes Ultraviolett-Lila */
 .close-btn {
   background: rgba(102, 0, 255, 0.05) !important;
   border-color: #6600ff !important;
@@ -394,7 +384,6 @@ main {
   box-shadow: 0 0 15px #6600ff !important;
 }
 
-/* Hält die Buttons (Zurück / Weiter) sauber nebeneinander */
 .story-controls {
   display: flex !important;
   gap: 20px !important;
@@ -476,43 +465,50 @@ main {
   transform-origin: 200px 200px;
 }
 
-/* KORREKTUR: Hält den Riesen-Falter auf Unterseiten perfekt zentriert */
 .content-section ~ .butterfly {
-  width: clamp(
-    350px,
-    70vw,
-    750px
-  ); /* Leicht angepasst, damit er nicht den ganzen Screen sprengt */
+  width: clamp(350px, 70vw, 750px);
   height: clamp(350px, 70vw, 750px);
   z-index: 2;
   margin-top: 20px;
   position: relative;
-
-  /* Garantiert absolute Zentrierung ohne mathematische Drifts */
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
-
-  /* Sanfte Höhenanpassung statt starrem Verschieben */
   top: 0 !important;
 }
 
 /* ==========================================================================
-   6. SUBPAGES & GALERIE
+   6. SUBPAGES & GALERIE (ABOUT, PICTURES, ETC.)
    ========================================================================== */
 .content-section {
   text-align: center;
   width: 100%;
   max-width: 600px;
   padding: 25px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
+  background: rgba(
+    0,
+    0,
+    0,
+    0.75
+  ) !important; /* Etwas dunkler für genialen Kontrast */
+  border: 2px solid #6600ff; /* Lila Rahmen passend zum Rest */
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
   box-sizing: border-box;
   margin: 20px 0;
   z-index: 6;
+  box-shadow: 0 4px 20px rgba(102, 0, 255, 0.3);
+}
+
+/* Garantiert, dass alle Überschriften in den Boxen auch perfekt leuchten */
+.content-section h1,
+.content-section h2,
+.content-section h3 {
+  color: #00ffff !important;
+  text-shadow: 0 0 6px #6600ff !important;
+  margin-top: 0;
 }
 
 .gallery-container {
@@ -668,126 +664,6 @@ main {
   }
 }
 
-./* ==========================================================================
-   NEON-DESIGN FÜR DEINE PRODUKTKARTEN (CYBER SHOP)
-   ========================================================================== */
-.shop-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  z-index: 6;
-  margin: 40px 0;
-}
-
-.product-card {
-  background: rgba(0, 0, 0, 0.65) !important;
-  backdrop-filter: blur(8px);
-  border: 2px solid #6600ff !important; /* Lila Rahmen passend zur Story */
-  padding: 25px !important;
-  border-radius: 16px !important;
-  text-align: center;
-  max-width: 290px;
-  box-shadow: 0 4px 20px rgba(102, 0, 255, 0.3) !important;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease !important;
-  box-sizing: border-box;
-}
-
-.product-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 0 25px #6600ff !important;
-  border-color: #00ffff !important; /* Wird beim Hovern Türkis */
-}
-
-.product-img-wrapper {
-  overflow: hidden;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #111;
-}
-
-.product-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.product-card:hover .product-img {
-  transform: scale(1.05);
-}
-
-.product-title {
-  font-size: 1.25rem !important;
-  font-family: Arial, sans-serif;
-  margin: 15px 0 8px 0 !important;
-  color: #00ffff !important; /* Perfektes Türkis */
-  text-shadow: 0 0 3px #6600ff !important;
-  font-weight: bold;
-}
-
-.product-price {
-  font-weight: bold !important;
-  font-family: Arial, sans-serif;
-  font-size: 1.2rem;
-  color: #ffffff !important;
-  margin-bottom: 20px !important;
-}
-
-/* DIE KAUFEN-BUTTONS IM INTERAKTIVEN NEON-STIL */
-.buy-btn {
-  background: rgba(0, 255, 255, 0.05) !important;
-  color: #00ffff !important;
-  border: 2px solid #00ffff !important;
-  padding: 12px 20px !important;
-  border-radius: 30px !important;
-  width: 100% !important;
-  font-weight: bold !important;
-  cursor: pointer !important;
-  font-size: 0.95rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 0 0 5px rgba(0, 255, 255, 0.2) !important;
-}
-
-.buy-btn:hover {
-  background: #00ffff !important;
-  color: #000000 !important;
-  box-shadow: 0 0 15px #00ffff !important;
-}
-.product-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-.product-title {
-  font-size: 1.2rem;
-  margin: 15px 0 5px 0;
-  color: #333;
-}
-.product-price {
-  font-weight: bold;
-  color: #00b4d8;
-  margin-bottom: 15px;
-}
-.buy-btn {
-  background-color: #111;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  width: 100%;
-  font-weight: bold;
-  transition: background 0.2s;
-}
-.buy-btn:hover {
-  background-color: #333;
-}
-
 /* HUMBLEBEE SINGLE-BACKDROP EFFECT */
 nav::before {
   content: "HUMBLEBEE";
@@ -817,10 +693,10 @@ nav::before {
 }
 
 /* ==========================================================================
-   Footer Styles
+   9. FOOTER BANNER
    ========================================================================== */
 div.bottom-banner {
-  position: relative; /* Wichtig, damit das neue Wort sich hier unten ausrichtet */
+  position: relative;
   width: 100% !important;
   background: rgba(255, 255, 255, 0.02) !important;
   backdrop-filter: blur(4px) !important;
@@ -837,7 +713,7 @@ div.bottom-banner {
 div.bottom-banner div.bottom-links {
   display: flex !important;
   gap: 40px !important;
-  z-index: 2 !important; /* Setzt die Impressum-Links sicher VOR das neue Wort */
+  z-index: 2 !important;
 }
 
 div.bottom-banner div.bottom-links a {
@@ -855,7 +731,6 @@ div.bottom-banner div.bottom-links a:hover {
   color: #6600ff !important;
 }
 
-/* DEIN NEUER, ZWEITER SCHRIFTZUG EXKLUSIV FÜR DEN FOOTER */
 div.bottom-banner::before {
   content: "HUMBLEBEE" !important;
   position: absolute !important;
@@ -866,25 +741,103 @@ div.bottom-banner::before {
   font-size: clamp(2rem, 6vw, 4.5rem) !important;
   font-weight: 900 !important;
   letter-spacing: 12px !important;
-  color: rgba(
-    106,
-    13,
-    173,
-    0.47
-  ) !important; /* Exakt dein originales Ultraviolett-Lila */
+  color: rgba(106, 13, 173, 0.47) !important;
   pointer-events: none !important;
-  z-index: 1 !important; /* Liegt perfekt hinter den Footer-Links */
-  animation: ultravioletPulse 4s ease-in-out infinite !important; /* Pulsiert genau wie das obere */
+  z-index: 1 !important;
+  animation: ultravioletPulse 4s ease-in-out infinite !important;
 }
 
-/* HEADER-RESET: Wir stellen den Originalzustand oben im Menü komplett wieder her */
-header {
-  position: relative !important;
-  z-index: 10 !important;
-}
-nav {
-  z-index: 1 !important;
-}
 nav::before {
   z-index: -1 !important;
+}
+
+/* ==========================================================================
+   10. NEON-DESIGN FÜR DEINE PRODUKTKARTEN (CYBER SHOP)
+   ========================================================================== */
+.shop-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 6;
+  margin: 40px 0;
+}
+
+.product-card {
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(8px);
+  border: 2px solid #6600ff !important;
+  padding: 25px !important;
+  border-radius: 16px !important;
+  text-align: center;
+  max-width: 290px;
+  box-shadow: 0 4px 20px rgba(102, 0, 255, 0.3) !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+  box-sizing: border-box;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 25px #6600ff !important;
+  border-color: #00ffff !important;
+}
+
+.product-img-wrapper {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #111;
+}
+
+.product-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+.product-title {
+  font-size: 1.25rem !important;
+  font-family: Arial, sans-serif;
+  margin: 15px 0 8px 0 !important;
+  color: #00ffff !important;
+  text-shadow: 0 0 3px #6600ff !important;
+  font-weight: bold;
+}
+
+.product-price {
+  font-weight: bold !important;
+  font-family: Arial, sans-serif;
+  font-size: 1.2rem;
+  color: #ffffff !important;
+  margin-bottom: 20px !important;
+}
+
+.buy-btn {
+  background: rgba(0, 255, 255, 0.05) !important;
+  color: #00ffff !important;
+  border: 2px solid #00ffff !important;
+  padding: 12px 20px !important;
+  border-radius: 30px !important;
+  width: 100% !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.2) !important;
+}
+
+.buy-btn:hover {
+  background: #00ffff !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px #00ffff !important;
 }
