@@ -24,21 +24,30 @@ function moveBee(bee) {
 function moveBumbleBee(bumble) {
   if (!bumble) return;
   const currentX = parseFloat(bumble.style.left) || 50;
-  const randomX = Math.floor(Math.random() * 85);
+
+  // Begrenzt X auf 10% bis 75% (damit er links und rechts nicht rausfliegt)
+  const randomX = Math.floor(10 + Math.random() * 65);
+
   const factor1 = Math.random(),
     factor2 = Math.random();
   const weightedFactor = Math.max(factor1, factor2);
-  const randomY = Math.floor(20 + weightedFactor * 68);
-  const randomScale = Math.random() * 0.5 + 0.9;
+
+  // Begrenzt Y auf 20% bis 65% (damit er oben und unten im Sichtfeld bleibt)
+  const randomY = Math.floor(20 + weightedFactor * 45);
+
+  const randomScale = Math.random() * 0.4 + 1.0; // Bleibt schön groß
   let direction = 1;
   if (randomX > currentX) {
     direction = -1;
   }
+
   bumble.style.left = randomX + "%";
   bumble.style.top = randomY + "%";
   bumble.style.transform = `scaleX(${direction}) scale(${randomScale})`;
-  const randomTime = Math.random() * 4000 + 5000;
-  bumble.style.transition = `top ${randomTime}ms ease-in-out, left ${randomTime}ms ease-in-out, transform 1.5s ease-in-out`;
+
+  const randomTime = Math.random() * 4000 + 4000;
+  bumble.style.transition = `top ${randomTime}ms ease-in-out, left ${randomTime}ms ease-in-out, transform 1.2s ease-in-out`;
+
   setTimeout(() => {
     moveBumbleBee(bumble);
   }, randomTime);
