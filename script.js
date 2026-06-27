@@ -165,3 +165,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+// ==========================================================================
+// DIE LOGIK FÜR DAS BLÄTTERN DER 4 SEITEN
+// ==========================================================================
+let currentPageNumber = 1;
+const totalPages = 5;
+
+function nextPage() {
+  if (currentPageNumber < totalPages) {
+    const currentPage = document.getElementById(`page${currentPageNumber}`);
+    currentPageNumber++;
+    const nextPage = document.getElementById(`page${currentPageNumber}`);
+
+    if (currentPage && nextPage) {
+      currentPage.classList.remove("active-page");
+      nextPage.classList.add("active-page");
+    }
+  }
+}
+
+function prevPage() {
+  if (currentPageNumber > 1) {
+    const currentPage = document.getElementById(`page${currentPageNumber}`);
+    currentPageNumber--;
+    const prevPage = document.getElementById(`page${currentPageNumber}`);
+
+    if (currentPage && prevPage) {
+      currentPage.classList.remove("active-page");
+      prevPage.classList.add("active-page");
+      prevPage.style.opacity = "1";
+    }
+  }
+}
+
+function closeStory() {
+  const currentPage = document.getElementById(`page${currentPageNumber}`);
+  if (currentPage) {
+    currentPage.classList.remove("active-page");
+  }
+
+  const textContainer = document.querySelector(".text-container");
+  if (textContainer) {
+    textContainer.style.display = "none";
+  }
+}
