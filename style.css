@@ -630,3 +630,62 @@ main {
 .buy-btn:hover {
   background-color: #333;
 }
+/* ==========================================================================
+   HUMBLEBEE SINGLE-BACKDROP EFFECT (ULTRAVIOLET SENIOR ARCHITECTURE)
+   ========================================================================== */
+
+/* 1. Wir nutzen den übergeordneten Container der Navigation für den Hintergrund,
+      damit das Wort absolut unikat nur einmal auf der Seite gerendert wird */
+nav {
+  position: relative; /* Bildet die mathematische Basis für die Zentrierung */
+  z-index: 1;
+}
+
+/* 2. Das Pseudoelement wird nun auf die gesamte Leiste angewendet, 
+      wodurch es perfekt zentriert im transparent-grauen Kasten liegt */
+nav::before {
+  content: "HUMBLEBEE";
+  position: absolute;
+
+  /* Perfekte, dynamische Zentrierung über die gesamte Breite und Höhe des Headers */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Senior-Styling: Gewaltig, modern und im gewünschten Ultraviolett-Lila */
+  font-family: "Arial Black", sans-serif;
+  font-size: clamp(
+    2rem,
+    6vw,
+    4.5rem
+  ); /* Skaliert absolut flüssig mit der Bildschirmgröße */
+  font-weight: 900;
+  letter-spacing: 12px; /* Edles, weites Spacing für den modernen Look */
+
+  /* Ultraviolett mit exakt austarierter Halbtransparenz (0.15 = 15% Deckkraft) */
+  color: rgba(106, 13, 173, 0.47);
+
+  /* Verhindert Textmarkierungen und Klick-Blockaden komplett */
+  pointer-events: none;
+  z-index: -1; /* Liegt sicher hinter den Links, aber über dem Header-Hintergrund */
+
+  /* Aktiviert die performante GPU-Blinkanimation (Pulse Effect) */
+  animation: ultravioletPulse 4s ease-in-out infinite;
+}
+
+/* 3. Mathematisch sanfte Animations-Schleife für das leichte, edle Blinken */
+@keyframes ultravioletPulse {
+  0% {
+    opacity: 0.25;
+    filter: drop-shadow(0 0 0px rgba(138, 43, 226, 0));
+  }
+  50% {
+    opacity: 1;
+    /* Verleiht dem Ultraviolett zur Animationsmitte ein leichtes, mystisches Leuchten */
+    filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.4));
+  }
+  100% {
+    opacity: 0.25;
+    filter: drop-shadow(0 0 0px rgba(138, 43, 226, 0));
+  }
+}
