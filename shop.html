@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shop - Bienen-Projekt</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.css"
+    />
+    <script
+      async
+      src="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.js"
+    ></script>
   </head>
   <body class="bg-flowers">
     <header>
@@ -66,13 +74,29 @@
         <div class="bumblebee" style="--x: 40%; --y: 70%">🐝</div>
       </div>
 
-      <section class="content-section shop-content">
-        <h1>Unser Shop</h1>
-        <p>
-          Hier entstehen bald tolle Produkte, um das Bienen-Projekt zu
-          unterstützen. Stay tuned!
-        </p>
-      </section>
+      <div class="product-card">
+        <img
+          src="https://via.placeholder.com/250"
+          alt="Cooles Shirt"
+          class="product-img"
+        />
+
+        <h3 class="product-title">Stylisches Entwickler-Shirt</h3>
+        <p class="product-price">24,99 €</p>
+
+        <button
+          class="snipcart-add-item buy-btn"
+          data-item-id="shirt-01"
+          data-item-name="Stylisches Entwickler-Shirt"
+          data-item-price="24.99"
+          data-item-url="/"
+          data-item-custom1-name="Größe"
+          data-item-custom1-options="S|M|L|XL"
+        >
+          In den Warenkorb
+        </button>
+      </div>
     </main>
+    <div id="snipcart" data-api-key="111" hidden></div>
   </body>
 </html>

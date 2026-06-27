@@ -552,3 +552,51 @@ main {
     margin-top: 5px;
   }
 }
+/* Stylt die Box um das Produkt herum */
+.product-card {
+  font-family: sans-serif;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 280px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin: 20px;
+}
+
+/* Sorgt dafür, dass das Bild schön reinpasst */
+.product-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-title {
+  font-size: 1.2rem;
+  margin: 15px 0 5px 0;
+  color: #333;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #00b4d8;
+  margin-bottom: 15px;
+}
+
+/* Macht den Button hübsch */
+.buy-btn {
+  background-color: #111;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+/* Farbe ändert sich, wenn man mit der Maus drübergeht */
+.buy-btn:hover {
+  background-color: #333;
+}
