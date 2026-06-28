@@ -841,3 +841,10 @@ nav::before {
   color: #000000 !important;
   box-shadow: 0 0 15px #00ffff !important;
 }
+/* ... dein alter CSS Code ... */
+
+.bienen-schutz {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  display: inline-block;
+}
