@@ -841,10 +841,109 @@ nav::before {
   color: #000000 !important;
   box-shadow: 0 0 15px #00ffff !important;
 }
-/* ... dein alter CSS Code ... */
 
 .bienen-schutz {
   unicode-bidi: bidi-override;
   direction: rtl;
   display: inline-block;
+}
+
+/* ==========================================================================
+   11. GLOBAL SNIPCART SHADOW DOM OVERRIDES (CYBER SHOP - PERFECT CYAN FIX)
+   ========================================================================== */
+:root {
+  /* Macht das Standard-Hintergrund-System unsichtbar */
+  --snipcart-cart-bg: transparent !important;
+
+  /* Standard-Textfarben */
+  --snipcart-color-default: #ffffff !important;
+  --snipcart-color-muted: #a5f3fc !important;
+
+  /* Buttons & Highlights komplett auf dein Website-Türkis umgestellt */
+  --snipcart-color-button-primary: #00ffff !important;
+  --snipcart-color-button-primary-hover: #ffffff !important;
+  --snipcart-color-button-primary-text: #000000 !important;
+  --snipcart-color-button-primary-hover-text: #000000 !important;
+
+  /* Links & Icons */
+  --snipcart-color-link: #00ffff !important;
+  --snipcart-color-icon: #00ffff !important;
+  --snipcart-border-color: rgba(0, 255, 255, 0.2) !important;
+  --snipcart-radius: 16px !important;
+}
+
+/* Das reine flowers.png im Hintergrund der Box */
+#snipcart .snipcart-layout,
+#snipcart .snipcart-cart__content,
+#snipcart .snipcart-modal__container {
+  background-image: url("sunset.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  font-family: Arial, sans-serif !important;
+}
+
+/* Zwingt sämtliche Container im inneren Warenkorb, kein eigenes Grau anzuzeigen */
+#snipcart .snipcart-cart-header,
+#snipcart .snipcart-item-line,
+#snipcart .snipcart-textbox,
+#snipcart .snipcart-input {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Entfernt das gesamte graue Snipcart-Hintergrund-Overlay im Hintergrund der Seite */
+#snipcart .snipcart-modal,
+#snipcart .snipcart-overlay,
+#snipcart .snipcart-lightbox,
+div.snipcart-modal,
+div.snipcart-overlay-slideout {
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* Verleiht der Warenkorb-Box selbst den genialen türkisen Schein */
+#snipcart .snipcart-cart__content {
+  border: 2px solid #00ffff !important;
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3) !important;
+}
+
+/* KUGELSICHER: Zwingt restlos ALLE Texte, Dropdowns, Labels ("Größe", "Anzahl") und Bezahl-Texte in Türkis */
+#snipcart .snipcart-item-line__title,
+#snipcart .snipcart-item-description,
+#snipcart .snipcart-cart-summary-fees__amount,
+#snipcart .snipcart-cart-summary-title,
+#snipcart .snipcart-item-line__header .snipcart-item-line__price,
+#snipcart .snipcart-cart-summary-fees__title,
+#snipcart .snipcart-cart-summary__label,
+#snipcart .snipcart-item-custom-fields__name,
+#snipcart .snipcart-item-custom-fields__value,
+#snipcart .snipcart-cart__footer-title,
+#snipcart .snipcart-modal__title,
+#snipcart .snipcart-cart-header__title,
+#snipcart .snipcart-item-quantity__label,
+#snipcart .snipcart-cart-summary-fees,
+#snipcart .snipcart-cart-summary-fees span,
+#snipcart .snipcart-cart-summary__total,
+#snipcart .snipcart-cart-summary__total span,
+#snipcart .snipcart-cart__footer,
+#snipcart .snipcart-item-custom-fields,
+#snipcart .snipcart-item-custom-fields label,
+#snipcart .snipcart-dropdown,
+#snipcart .snipcart-dropdown__select {
+  color: #00ffff !important;
+  font-weight: bold !important;
+  text-shadow:
+    0 0 4px rgba(0, 255, 255, 0.6),
+    1px 1px 2px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Die nackte Zahl (Menge) im kleinen weißen Kasten bleibt weiterhin das lila Highlight */
+#snipcart .snipcart-item-quantity__quantity {
+  color: #6600ff !important;
+  font-weight: bold !important;
+  text-shadow: none !important;
 }
