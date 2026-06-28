@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Donate - Bienen-Projekt</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Spezielles Styling für den GoFundMe-Button, das perfekt zum Neon-Look passt */
+      .gofundme-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 28px;
+        background-color: rgba(0, 255, 255, 0.05);
+        color: #00ffff;
+        font-weight: bold;
+        text-decoration: none;
+        border: 2px solid #00ffff;
+        border-radius: 30px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+        font-family: Arial, sans-serif;
+        text-shadow: none;
+      }
+
+      .gofundme-button:hover {
+        background-color: #00ffff;
+        color: #000000;
+        box-shadow: 0 0 15px #00ffff;
+        transform: scale(1.05);
+      }
+    </style>
   </head>
   <body class="bg-flowers">
     <header>
@@ -13,8 +38,8 @@
           <a href="index.html">Home</a>
           <a href="shop.html">Shop</a>
           <a href="about.html">About</a>
-          <a href="pictures.html" aria-current="page">Pictures</a>
-          <a href="donate.html">FundMe</a>
+          <a href="pictures.html">Pictures</a>
+          <a href="donate.html" aria-current="page">FundMe</a>
         </div>
 
         <div class="nav-socials">
@@ -63,18 +88,18 @@
       <section class="content-section">
         <h1>FundMe</h1>
         <p>
-          Ünterstützt mein Projekt, Lass uns zusammen die Welt ein bisschen
-          schöner und bunter machen
+          Unterstütze mein Projekt! Lass uns zusammen die "Graue Stille" brechen
+          und die Welt ein bisschen schöner und bunter machen.
         </p>
         <p>Ich wünsche dir nur das Beste. Bee humble, dein HumbleBee. 🐝💛</p>
 
         <a
-          href="https://www.paypal.me/DEIN_NUTZERNAME"
+          href="https://gofund.me/741ec9569"
           target="_blank"
           rel="noopener noreferrer"
-          class="paypal-button"
+          class="gofundme-button"
         >
-          PayPal
+          Jetzt auf GoFundMe spenden ➔
         </a>
 
         <div class="bee" style="--x: 15%; --y: 75%" aria-hidden="true">🐝</div>
@@ -218,8 +243,15 @@
         </svg>
       </div>
     </main>
+
+    <div class="bottom-banner">
+      <div class="bottom-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutzbestimmungen</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+
     <script src="script.js"></script>
-  </body>
-</html>
   </body>
 </html>
