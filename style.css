@@ -1009,3 +1009,13 @@ div.snipcart-overlay-slideout {
   font-weight: bold !important;
   text-shadow: none !important;
 }
+/* Fix für mobile Android- und iOS-Geräte */
+@media (max-width: 768px) {
+  body {
+    /* Deaktiviert den fehlerhaften fixierten Hintergrund auf Handys */
+    background-attachment: scroll !important;
+
+    /* Nutzt die moderne dynamische Viewport-Höhe, um das Springen durch die Adressleiste zu verhindern */
+    min-height: 100dvh;
+  }
+}
