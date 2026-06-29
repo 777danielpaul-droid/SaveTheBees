@@ -613,7 +613,7 @@ main {
 }
 
 /* ==========================================================================
-   8. ABOUT US PAGES & RESPONSIVE LAYOUTS
+   8. ABOUT US PAGES & RESPONSIVE LAYOUTS (MOBILE OPTIMIZED)
    ========================================================================== */
 .about-main {
   display: flex;
@@ -637,51 +637,71 @@ main {
   text-align: center;
 }
 
+/* KORREKTUR FÜR MOBILE GERÄTE (HANDY-ANSICHT) */
 @media (max-width: 768px) {
+  /* Header-Navigation flexibel machen */
   nav {
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-    padding: 15px;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important;
+    padding: 15px 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
+
+  /* Alle Header-Links (Home, Shop, etc.) sauber umbrechen lassen */
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px 20px !important; /* Kleinerer Abstand: oben/unten 12px, links/rechts 20px */
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  nav a {
+    display: inline-block !important;
+    padding: 5px 8px !important; /* Vergrößert die Klickfläche auf dem Touchscreen */
+  }
+
+  /* Social Icons unter die Navigation setzen, damit sie nichts blockieren */
   .nav-socials {
-    position: static;
-    transform: none;
-    margin-top: 5px;
+    position: static !important;
+    transform: none !important;
+    margin-top: 10px !important;
+    justify-content: center !important;
   }
+
+  /* Cursor auf Handys komplett deaktivieren */
   .trailing-bee-cursor {
     display: none !important;
   }
-}
 
-/* HUMBLEBEE SINGLE-BACKDROP EFFECT */
-nav::before {
-  content: "HUMBLEBEE";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Arial Black", sans-serif;
-  font-size: clamp(2rem, 6vw, 4.5rem);
-  font-weight: 900;
-  letter-spacing: 12px;
-  color: rgba(106, 13, 173, 0.47);
-  pointer-events: none;
-  z-index: -1;
-  animation: ultravioletPulse 4s ease-in-out infinite;
-}
-@keyframes ultravioletPulse {
-  0%,
-  100% {
-    opacity: 0.25;
-    filter: drop-shadow(0 0 0px rgba(138, 43, 226, 0));
+  /* Footer-Banner flexibel machen */
+  div.bottom-banner {
+    padding: 20px 10px !important;
+    height: auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
-  50% {
-    opacity: 1;
-    filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.4));
+
+  /* Footer-Links (Impressum, AGB, etc.) untereinander/nebeneinander umbrechen */
+  div.bottom-banner div.bottom-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px 20px !important;
+    width: 100% !important;
+  }
+
+  div.bottom-banner div.bottom-links a {
+    display: inline-block !important;
+    padding: 5px 10px !important;
   }
 }
-
 /* ==========================================================================
    9. FOOTER BANNER
    ========================================================================== */
@@ -742,7 +762,7 @@ nav::before {
 }
 
 /* ==========================================================================
-   10. NEON-DESIGN FÜR DEINE PRODUKTKARTEN (CYBER SHOP)
+   10. NEON-DESIGN FÜR PRODUKTKARTEN (CYBER SHOP)
    ========================================================================== */
 .shop-grid {
   display: flex;
