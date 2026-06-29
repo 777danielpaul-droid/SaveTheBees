@@ -742,7 +742,7 @@ nav::before {
 }
 
 /* ==========================================================================
-   10. PRODUKTKARTEN (SHOP GRID)
+   10. NEON-DESIGN FÜR DEINE PRODUKTKARTEN (CYBER SHOP)
    ========================================================================== */
 .shop-grid {
   display: flex;
@@ -763,7 +763,8 @@ nav::before {
   padding: 25px !important;
   border-radius: 16px !important;
   text-align: center;
-  max-width: 290px;
+  width: 100%;
+  max-width: 290px; /* Hält die Boxen kompakt */
   box-shadow: 0 4px 20px rgba(102, 0, 255, 0.3) !important;
   transition:
     transform 0.3s ease,
@@ -778,15 +779,24 @@ nav::before {
 }
 
 .product-img-wrapper {
+  width: 100%;
+  height: 240px; /* Zwingt den Kasten auf eine einheitliche, saubere Höhe */
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  /* 'contain' stellt sicher, dass Merchandise (Shirts/Bücher) komplett sichtbar bleibt und nicht beschnitten wird */
+  object-fit: contain;
+  padding: 12px; /* Verleiht dem Produkt einen eleganten Abstand zum Rahmen */
+  box-sizing: border-box;
   display: block;
   transition: transform 0.3s ease;
 }
