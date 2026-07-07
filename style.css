@@ -985,27 +985,26 @@ div.snipcart-overlay-slideout {
 }
 
 /* ==========================================================================
-   12. MOBILE STYLES & OPTIMIZATIONS
+   12. MOBILE STYLES & OPTIMIZATIONS (KOMPLETT ERSETZT)
    ========================================================================== */
 @media (max-width: 768px) {
   header::before {
     font-size: 1.8rem !important;
     letter-spacing: 4px !important;
-    top: 25% !important;
-    transform: translate(-50%, -50%) !important;
+    top: 25px !important; /* Fest oben verankert */
+    transform: translateX(-50%) !important;
     animation: none !important;
-    /* FIX: Hier holen wir das lila Neon-Design & Outline zurück! */
-    color: rgba(106, 13, 173, 0.6) !important;
-    -webkit-text-stroke: 2px #00ffff !important;
+    color: #00ffff !important;
     opacity: 1 !important;
     text-shadow:
-      0 0 10px rgba(0, 255, 255, 0.4),
-      0 0 20px rgba(102, 0, 255, 0.4) !important;
+      0 0 10px #00ffff,
+      0 0 20px #6600ff,
+      2px 2px 4px rgba(0, 0, 0, 1) !important;
   }
 
   header {
     height: auto !important;
-    padding: 20px 10px !important;
+    padding: 70px 10px 20px 10px !important; /* Schafft oben Platz für die Überschrift */
   }
 
   nav {
@@ -1017,6 +1016,7 @@ div.snipcart-overlay-slideout {
     padding: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    margin-top: 10px !important; /* Schiebt die Links sauber UNTER das Wort */
   }
 
   .nav-links {
@@ -1081,39 +1081,37 @@ div.snipcart-overlay-slideout {
     font-size: 1.8rem !important;
     letter-spacing: 4px !important;
     animation: none !important;
-    color: rgba(106, 13, 173, 0.6) !important;
-    -webkit-text-stroke: 2px #00ffff !important;
+    color: #00ffff !important;
     opacity: 1 !important;
     text-shadow:
-      0 0 10px rgba(0, 255, 255, 0.4),
-      0 0 20px rgba(102, 0, 255, 0.4) !important;
+      0 0 10px #00ffff,
+      0 0 20px #6600ff,
+      2px 2px 4px rgba(0, 0, 0, 1) !important;
   }
 
   body {
     background-attachment: scroll !important;
+    min-height: 100vh; /* Sicherer Fallback */
     min-height: 100dvh;
   }
 }
 
 /* ==========================================================================
-   13. MOBIL-HAUPTFIGUR (DIE ECHTE PNG-BIENE BEREINIGT)
+   MOBIL-HAUPTFIGUR (FINALE ABSICHERUNG)
    ========================================================================== */
 .mobile-hummel {
+  content: "" !important;
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-
   width: 85px !important;
   height: 85px !important;
-
   background-image: url("CursorBee.png") !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
-
   pointer-events: none !important;
   z-index: 9999999 !important;
   will-change: left, top;
-
   animation: hummelSchwirren 6s infinite ease-in-out alternate !important;
 }
