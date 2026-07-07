@@ -1,13 +1,6 @@
 /* ==========================================================================
    1. GLOBAL STYLES & BACKGROUNDS
    ========================================================================== */
-html,
-body {
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-  background-color: #0b031a !important; /* Verhindert die weiße Fläche beim Scrollen */
-}
-
 body {
   background-size: cover;
   background-position: center;
@@ -20,6 +13,7 @@ body {
     0 0 3px #6600ff,
     1px 1px 2px rgba(0, 0, 0, 0.8);
   min-height: 100vh;
+  overflow-x: hidden;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -784,9 +778,11 @@ div.bottom-banner div.bottom-links > align-self-start-placeholder {
   gap: 30px !important;
 }
 
-/* === POSITION FÜR DATENSCHUTZBESTIMMUNGEN (NUR DESKTOP WIRD UNTEN ÜBERSCHRIEBEN) === */
+/* === MANUELLE VERSCHIEBUNG FÜR DATENSCHUTZBESTIMMUNGEN === */
 #footer-datenschutz {
   position: relative !important;
+  /* Passe die Werte hier an: Erste Zahl = Links(-)/Rechts(+), Zweite Zahl = Oben(-)/Unten(+) */
+  transform: translate(-40px, 0px) !important;
 }
 
 div.bottom-banner div.bottom-links a:last-child:not(.footer-links-container a) {
@@ -1113,29 +1109,4 @@ div.snipcart-overlay-slideout {
     background-attachment: scroll !important;
     min-height: 100dvh;
   }
-}
-
-/* DESKTOP-FIX: SCHIEBT DEN DATENSCHUTZ-LINK GEZIELT IN DIE MITTE */
-@media (min-width: 769px) {
-  #footer-datenschutz {
-    transform: translate(
-      80px,
-      0px
-    ) !important; /* Positiver Wert schiebt den Link nach rechts */
-    display: inline-block !important;
-  }
-}
-/* ==========================================================================
-   FIX FÜR DIE MOBILE HUMMEL
-   ========================================================================== */
-.mobile-hummel {
-  position: absolute;
-  width: clamp(28px, 5vw, 42px);
-  height: clamp(28px, 5vw, 42px);
-  background-image: url("CursorBee.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  pointer-events: none;
-  z-index: 5;
-  animation: hummelSchwirren 8s infinite ease-in-out alternate;
 }

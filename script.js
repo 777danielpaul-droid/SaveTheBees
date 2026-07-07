@@ -3,16 +3,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const bumbles = document.querySelectorAll(".bumblebee");
   const butterflies = document.querySelectorAll(".butterfly");
 
-  // Insekten-Bewegungen starten
-  if (bees.length > 0) {
-    bees.forEach((bee) => setTimeout(() => moveInsect(bee), 200));
+  // Zentrale, sichere Bewegungsfunktion für alle Insekten
+  function moveInsect(element) {
+    if (!element) return;
+    setInterval(() => {
+      const randomX = Math.floor(Math.random() * 80) + 10; // 10% bis 90%
+      const randomY = Math.floor(Math.random() * 80) + 10;
+
+      element.style.setProperty("--x", `${randomX}%`);
+      element.style.setProperty("--y", `${randomY}%`);
+      element.style.transition = "left 5s ease-in-out, top 5s ease-in-out";
+      element.style.left = `${randomX}%`;
+      element.style.top = `${randomY}%`;
+    }, 5000);
   }
-  if (bumbles.length > 0) {
-    bumbles.forEach((bumble) => setTimeout(() => moveInsect(bumble), 400));
-  }
-  if (butterflies.length > 0) {
+
+  // Insekten sicher starten
+  if (bees.length > 0)
+    bees.forEach((b) => setTimeout(() => moveInsect(b), 200));
+  if (bumbles.length > 0)
+    bumbles.forEach((b) => setTimeout(() => moveInsect(b), 400));
+  if (butterflies.length > 0)
     butterflies.forEach((bf) => setTimeout(() => moveInsect(bf), 600));
-  }
 
   // Smasher-Weiche: Mobilgeräte oder Tablets herausfiltern
   const isMobileDevice =
@@ -26,8 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
     mobileHumblebee.className = "mobile-hummel";
     mobileHumblebee.style.left = "50%";
     mobileHumblebee.style.top = "50%";
+    mobileHumblebee.style.position = "fixed";
 
-    const layer = document.querySelector(".insect-layer");
+    const layer = document.querySelector(".insect-layer") || document.body;
     if (layer) {
       layer.appendChild(mobileHumblebee);
       setTimeout(() => moveInsect(mobileHumblebee), 500);
@@ -53,10 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderLoop() {
       beeX += (mouseX - beeX) * easing;
       beeY += (mouseY - beeY) * easing;
-
       angle += 0.04;
       const circleRadius = 24;
-
       const finalX = beeX + Math.cos(angle) * circleRadius - 32;
       const finalY = beeY + Math.sin(angle) * circleRadius - 32;
 
@@ -64,17 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
       beeFollower.style.setProperty("--bee-y", `${finalY}px`);
 
       const direction = mouseX > beeX ? -1 : 1;
-
       if (!beeFollower.classList.contains("bee-hovering")) {
         beeFollower.style.transform = `translate3d(${finalX}px, ${finalY}px, 0) scaleX(${direction})`;
       }
-
       requestAnimationFrame(renderLoop);
     }
-
     requestAnimationFrame(renderLoop);
 
-    // Strategische Hover-Detektion (Nur für Desktop)
     const moneyTargets = document.querySelectorAll(
       'a[href="shop.html"], a[href="donate.html"]',
     );
@@ -90,68 +97,47 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================================================
-   FEHLENDE FUNKTIONEN: INSEKTEN-BEWEGUNG
-   ========================================================================== */
-function moveInsect(element) {
-  // Sanfte Zufallsbewegung, die die CSS-Variablen updatet
-  setInterval(() => {
-    const randomX = Math.floor(Math.random() * 80) + 10; // 10% bis 90%
-    const randomY = Math.floor(Math.random() * 80) + 10; // 10% bis 90%
-    element.style.setProperty("--x", `${randomX}%`);
-    element.style.setProperty("--y", `${randomY}%`);
-
-    // Smooth Transition hinzufügen, damit sie nicht springen
-    element.style.transition = "left 5s ease-in-out, top 5s ease-in-out";
-    element.style.left = `var(--x)`;
-    element.style.top = `var(--y)`;
-  }, 5000); // Alle 5 Sekunden eine neue Position
-}
-
-/* ==========================================================================
-   FEHLENDE FUNKTIONEN: GESCHICHTE (BUCH-BLÄTTER-SYSTEM)
+   GESCHICHTEN-SYSTEM (Wird von den HTML-Buttons aufgerufen)
    ========================================================================== */
 let currentPage = 1;
 const totalPages = 5;
 
-function skipIntro() {
-  // Versteckt die Intro-Texte und den Button
+window.skipIntro = function () {
   document
     .querySelectorAll(".animated-text")
     .forEach((el) => (el.style.display = "none"));
-  document.getElementById("skip-intro-btn").style.display = "none";
-
-  // Zeigt Seite 1 an
+  const btn = document.getElementById("skip-intro-btn");
+  if (btn) btn.style.display = "none";
   currentPage = 1;
-  updateStoryPage();
-}
+  window.updateStoryPage();
+};
 
-function nextPage() {
+window.nextPage = function () {
   if (currentPage < totalPages) {
     currentPage++;
-    updateStoryPage();
+    window.updateStoryPage();
   }
-}
+};
 
-function prevPage() {
+window.prevPage = function () {
   if (currentPage > 1) {
     currentPage--;
-    updateStoryPage();
+    window.updateStoryPage();
   }
-}
+};
 
-function closeStory() {
+window.closeStory = function () {
   document
     .querySelectorAll(".story-page")
-    .forEach((page) => page.classList.remove("active-page"));
-}
+    .forEach((p) => p.classList.remove("active-page"));
+};
 
-function updateStoryPage() {
-  // Versteckt alle Seiten und zeigt nur die aktuelle an
+window.updateStoryPage = function () {
   document
     .querySelectorAll(".story-page")
-    .forEach((page) => page.classList.remove("active-page"));
+    .forEach((p) => p.classList.remove("active-page"));
   const currentEl = document.getElementById(`page${currentPage}`);
   if (currentEl) {
     currentEl.classList.add("active-page");
   }
-}
+};
