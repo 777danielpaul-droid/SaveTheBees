@@ -1,82 +1,3 @@
-function moveBee(bee) {
-  if (!bee) return;
-  const currentX = parseFloat(bee.style.left) || 50;
-  const randomX = Math.floor(Math.random() * 90);
-  const factor1 = Math.random(),
-    factor2 = Math.random();
-  const weightedFactor = Math.max(factor1, factor2);
-  const randomY = Math.floor(15 + weightedFactor * 73);
-  const randomScale = Math.random() * 0.6 + 0.8;
-  let direction = 1;
-  if (randomX > currentX) {
-    direction = -1;
-  }
-  bee.style.left = randomX + "%";
-  bee.style.top = randomY + "%";
-  bee.style.transform = `scaleX(${direction}) scale(${randomScale})`;
-  const randomTime = Math.random() * 4000 + 4000;
-  bee.style.transition = `top ${randomTime}ms ease-in-out, left ${randomTime}ms ease-in-out, transform 1.2s ease-in-out`;
-  setTimeout(() => {
-    moveBee(bee);
-  }, randomTime);
-}
-
-function moveBumbleBee(bumble) {
-  if (!bumble) return;
-  const currentX = parseFloat(bumble.style.left) || 50;
-
-  // Begrenzt X auf 10% bis 75% (damit er links und rechts nicht rausfliegt)
-  const randomX = Math.floor(10 + Math.random() * 65);
-
-  const factor1 = Math.random(),
-    factor2 = Math.random();
-  const weightedFactor = Math.max(factor1, factor2);
-
-  // Begrenzt Y auf 20% bis 65% (damit er oben und unten im Sichtfeld bleibt)
-  const randomY = Math.floor(20 + weightedFactor * 45);
-
-  const randomScale = Math.random() * 0.4 + 1.0; // Bleibt schön groß
-  let direction = 1;
-  if (randomX > currentX) {
-    direction = -1;
-  }
-
-  bumble.style.left = randomX + "%";
-  bumble.style.top = randomY + "%";
-  bumble.style.transform = `scaleX(${direction}) scale(${randomScale})`;
-
-  const randomTime = Math.random() * 4000 + 4000;
-  bumble.style.transition = `top ${randomTime}ms ease-in-out, left ${randomTime}ms ease-in-out, transform 1.2s ease-in-out`;
-
-  setTimeout(() => {
-    moveBumbleBee(bumble);
-  }, randomTime);
-}
-
-// ==========================================================================
-// KORRIGIERTE SCHMETTERLINGS-FUNKTION (Kopfstand-Fix & ohne Spiegelung)
-// ==========================================================================
-function moveButterfly(bf) {
-  if (!bf || bf === undefined) return;
-
-  // Berechnet rein die neuen Koordinaten im Raum
-  const randomX = Math.floor(Math.random() * 85);
-  const randomY = Math.floor(Math.random() * 75) + 15;
-
-  bf.style.left = randomX + "%";
-  bf.style.top = randomY + "%";
-
-  const randomTime = Math.random() * 4000 + 5000;
-  bf.style.transition = `top ${randomTime}ms ease-in-out, left ${randomTime}ms ease-in-out`;
-
-  setTimeout(() => {
-    moveButterfly(bf);
-  }, randomTime);
-}
-
-// ==========================================================================
-// MAUS-SCHWÄRM-LOGIK (REQUEST ANIMATION FRAME ARCHITECTURE)
-// ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
   const bees = document.querySelectorAll(".bee");
   const bumbles = document.querySelectorAll(".bumblebee");
@@ -113,8 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isMobileDevice) {
     // MOBIL-MODUS: Erstelle die Cursor-Biene als freies Fluginsekt!
     const mobileHumblebee = document.createElement("div");
-    mobileHumblebee.className = "bumblebee mobile-hummel";
-    mobileHumblebee.style.backgroundImage = "url('CursorBee.png')";
+    mobileHumblebee.className = "mobile-hummel"; // Eigene saubere Klasse
+
+    // WICHTIG: Startwerte setzen, damit moveBumbleBee() nicht abstürzt!
+    mobileHumblebee.style.left = "50%";
+    mobileHumblebee.style.top = "50%";
 
     // In den Insekten-Layer einsetzen
     const layer = document.querySelector(".insect-layer");
@@ -181,73 +105,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-// ==========================================================================
-// DIE LOGIK FÜR DAS BLÄTTERN DER 4 SEITEN
-// ==========================================================================
-let currentPageNumber = 1;
-const totalPages = 5;
-
-function nextPage() {
-  if (currentPageNumber < totalPages) {
-    const currentPage = document.getElementById(`page${currentPageNumber}`);
-    currentPageNumber++;
-    const nextPage = document.getElementById(`page${currentPageNumber}`);
-
-    if (currentPage && nextPage) {
-      currentPage.classList.remove("active-page");
-      nextPage.classList.add("active-page");
-    }
-  }
-}
-
-function prevPage() {
-  if (currentPageNumber > 1) {
-    const currentPage = document.getElementById(`page${currentPageNumber}`);
-    currentPageNumber--;
-    const prevPage = document.getElementById(`page${currentPageNumber}`);
-
-    if (currentPage && prevPage) {
-      currentPage.classList.remove("active-page");
-      prevPage.classList.add("active-page");
-      prevPage.style.opacity = "1";
-    }
-  }
-}
-
-function closeStory() {
-  const currentPage = document.getElementById(`page${currentPageNumber}`);
-  if (currentPage) {
-    currentPage.classList.remove("active-page");
-  }
-
-  const textContainer = document.querySelector(".text-container");
-  if (textContainer) {
-    textContainer.style.display = "none";
-  }
-}
-
-// ==========================================================================
-// NEU: INTRO ÜBERSPRINGEN LOGIK
-// ==========================================================================
-function skipIntro() {
-  const introTexts = document.querySelectorAll(".animated-text");
-  introTexts.forEach((txt) => {
-    txt.style.animation = "none";
-    txt.style.opacity = "0";
-  });
-
-  const skipBtn = document.getElementById("skip-intro-btn");
-  if (skipBtn) {
-    skipBtn.style.display = "none";
-  }
-
-  const page1 = document.getElementById("page1");
-  if (page1) {
-    page1.style.animation = "none";
-    page1.classList.add("active-page");
-    page1.style.opacity = "1";
-  }
-
-  currentPageNumber = 1;
-}

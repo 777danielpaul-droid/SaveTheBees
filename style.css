@@ -1125,3 +1125,17 @@ div.snipcart-overlay-slideout {
     display: inline-block !important;
   }
 }
+/* ==========================================================================
+   FIX FÜR DIE MOBILE HUMMEL
+   ========================================================================== */
+.mobile-hummel {
+  position: absolute;
+  width: clamp(28px, 5vw, 42px);
+  height: clamp(28px, 5vw, 42px);
+  background-image: url("CursorBee.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 5;
+  animation: hummelSchwirren 8s infinite ease-in-out alternate;
+}
