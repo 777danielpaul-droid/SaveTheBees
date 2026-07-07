@@ -8,13 +8,10 @@ body {
   background-attachment: fixed;
   margin: 0;
   font-family: Arial, sans-serif;
-
-  /* Türkis mit lila Glow */
   color: #00ffff;
   text-shadow:
     0 0 3px #6600ff,
     1px 1px 2px rgba(0, 0, 0, 0.8);
-
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
@@ -63,16 +60,14 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION (UMGEFORMT IN DEN ECHTEN FOOTER-LOOK)
+   2. HEADER & NAVIGATION
    ========================================================================== */
 header {
   position: relative !important;
   width: 100% !important;
-  /* Exakter Footer-Hintergrund und Weichzeichner */
   background: rgba(255, 255, 255, 0.02) !important;
   backdrop-filter: blur(4px) !important;
   -webkit-backdrop-filter: blur(4px) !important;
-  /* Lila Unterkante statt Oberkante */
   border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
   border-top: none !important;
   padding: 25px 0 !important;
@@ -96,15 +91,13 @@ nav {
   z-index: 2 !important;
 }
 
-/* Die Navigations-Links erhalten die exakte Struktur der Footer-Links */
 .nav-links {
   display: flex !important;
-  gap: 40px !important; /* Identischer Abstand wie im Footer */
+  gap: 40px !important;
   z-index: 2 !important;
 }
 
 nav a {
-  /* Exakter Link-Stil aus dem Footer */
   color: #00ffff !important;
   text-decoration: none !important;
   font-weight: bold !important;
@@ -119,16 +112,15 @@ nav a {
 
 .nav-links a:hover {
   color: #6600ff !important;
-  animation: none !important; /* Deaktiviert das störende Blinken beim Hovern */
+  animation: none !important;
 }
 
-/* Social Icons fließen nahtlos im Layout mit ein, statt abzugehen */
 .nav-socials {
   position: static !important;
   transform: none !important;
   display: flex !important;
   gap: 15px;
-  margin-left: 40px; /* Hält sauberen Abstand zu den Text-Links */
+  margin-left: 40px;
   z-index: 2 !important;
 }
 
@@ -140,9 +132,7 @@ nav a {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition:
-    stroke 0.3s ease,
-    transform 0.3s ease !important;
+  transition: stroke 0.3s ease, transform 0.3s ease !important;
 }
 
 .nav-socials a:hover .social-icon {
@@ -154,7 +144,6 @@ nav a {
   animation: none !important;
 }
 
-/* Der große, ultraviolett pulsierende HUMBLEBEE-Schriftzug im Hintergrund */
 header::before {
   content: "HUMBLEBEE" !important;
   position: absolute !important;
@@ -179,129 +168,87 @@ nav::before {
    3. ANIMATIONS
    ========================================================================== */
 @keyframes ultravioletPulse {
-  0%,
-  100% {
-    text-shadow:
-      0 0 10px rgba(102, 0, 255, 0.3),
-      0 0 20px rgba(102, 0, 255, 0.2);
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(102, 0, 255, 0.3), 0 0 20px rgba(102, 0, 255, 0.2);
     opacity: 0.47;
   }
   50% {
-    text-shadow:
-      0 0 25px rgba(0, 255, 255, 0.6),
-      0 0 40px rgba(102, 0, 255, 0.6);
+    text-shadow: 0 0 25px rgba(0, 255, 255, 0.6), 0 0 40px rgba(102, 0, 255, 0.6);
     opacity: 0.85;
   }
 }
 @keyframes blinken {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 @keyframes fadeSequence {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -30%);
-  }
-  15%,
-  85% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -70%);
-  }
+  0% { opacity: 0; transform: translate(-50%, -30%); }
+  15%, 85% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -70%); }
 }
 @keyframes finalFade {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -30%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
+  0% { opacity: 0; transform: translate(-50%, -30%); }
+  100% { opacity: 1; transform: translate(-50%, -50%); }
 }
+
+/* Kombiniert das CSS-Schwirren mit den JS-Variablen für Ausrichtung und Skalierung! */
 @keyframes superSchwirren {
   0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
+    transform: translate(0, 0) scaleX(var(--bee-dir, 1)) scale(var(--bee-scale, 1)) rotate(0deg);
   }
   25% {
-    transform: translate(40px, -50px) scale(1.05) rotate(5deg);
+    transform: translate(40px, -50px) scaleX(var(--bee-dir, 1)) scale(calc(var(--bee-scale, 1) * 1.05)) rotate(5deg);
   }
   50% {
-    transform: translate(-30px, -20px) scale(0.95) rotate(-10deg);
+    transform: translate(-30px, -20px) scaleX(var(--bee-dir, 1)) scale(calc(var(--bee-scale, 1) * 0.95)) rotate(-10deg);
   }
   75% {
-    transform: translate(50px, 30px) scale(1) rotate(8deg);
+    transform: translate(50px, 30px) scaleX(var(--bee-dir, 1)) scale(var(--bee-scale, 1)) rotate(8deg);
   }
   100% {
-    transform: translate(-15px, -60px) scale(1.02) rotate(-5deg);
+    transform: translate(-15px, -60px) scaleX(var(--bee-dir, 1)) scale(calc(var(--bee-scale, 1) * 1.02)) rotate(-5deg);
   }
 }
+
 @keyframes hummelSchwirren {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scaleX(var(--bumble-dir, 1)) scale(var(--bumble-scale, 1));
   }
   33% {
-    transform: translate(-50px, 40px) scale(1.03) rotate(-8deg);
+    transform: translate(-50px, 40px) scaleX(var(--bumble-dir, 1)) scale(calc(var(--bumble-scale, 1) * 1.03)) rotate(-8deg);
   }
   66% {
-    transform: translate(40px, -40px) scale(0.97) rotate(6deg);
+    transform: translate(40px, -40px) scaleX(var(--bumble-dir, 1)) scale(calc(var(--bumble-scale, 1) * 0.97)) rotate(6deg);
   }
   100% {
-    transform: translate(-15px, -25px) scale(1);
+    transform: translate(-15px, -25px) scaleX(var(--bumble-dir, 1)) scale(var(--bumble-scale, 1));
   }
 }
+
 @keyframes sachteSchwingen {
   0% {
-    transform: translateY(15px) translateX(-25px) rotate(-3deg);
+    transform: translateY(15px) translateX(-25px) rotate(calc(var(--bf-rot, 0deg) - 3deg));
   }
   100% {
-    transform: translateY(-20px) translateX(25px) rotate(3deg);
+    transform: translateY(-20px) translateX(25px) rotate(calc(var(--bf-rot, 0deg) + 3deg));
   }
 }
 @keyframes flügelschlagLinks {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0.12);
-  }
+  0% { transform: scaleX(1); }
+  100% { transform: scaleX(0.12); }
 }
 @keyframes flügelschlagRechts {
-  0% {
-    transform: scaleX(-1);
-  }
-  100% {
-    transform: scaleX(-0.12);
-  }
+  0% { transform: scaleX(-1); }
+  100% { transform: scaleX(-0.12); }
 }
 @keyframes rumpfVibe {
-  0% {
-    transform: scaleY(1);
-  }
-  100% {
-    transform: scaleY(0.97) translateY(1px);
-  }
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0.97) translateY(1px); }
 }
 @keyframes rayMultiGluehen {
-  0% {
-    opacity: 0.02;
-    transform: scaleX(0.7) translateY(0);
-  }
-  50% {
-    opacity: 0.65;
-  }
-  100% {
-    opacity: 0.05;
-    transform: scaleX(1.2);
-  }
+  0% { opacity: 0.02; transform: scaleX(0.7) translateY(0); }
+  50% { opacity: 0.65; }
+  100% { opacity: 0.05; transform: scaleX(1.2); }
 }
 
 /* ==========================================================================
@@ -347,25 +294,13 @@ main {
   pointer-events: none;
 }
 
-.txt-1 {
-  animation: fadeSequence 4s ease-in-out 1.7s forwards;
-}
-.txt-2 {
-  animation: fadeSequence 4s ease-in-out 5.7s forwards;
-}
-.txt-3 {
-  animation: fadeSequence 4s ease-in-out 9.7s forwards;
-}
-.txt-4 {
-  animation: fadeSequence 4s ease-in-out 13.7s forwards;
-}
-.txt-5 {
-  animation: fadeSequence 4s ease-in-out 17.7s forwards;
-}
+.txt-1 { animation: fadeSequence 4s ease-in-out 1.7s forwards; }
+.txt-2 { animation: fadeSequence 4s ease-in-out 5.7s forwards; }
+.txt-3 { animation: fadeSequence 4s ease-in-out 9.7s forwards; }
+.txt-4 { animation: fadeSequence 4s ease-in-out 13.7s forwards; }
+.txt-5 { animation: fadeSequence 4s ease-in-out 17.7s forwards; }
 
-/* ==========================================================================
-   BUCH-BLÄTTER-SYSTEM (STORY-PAGES)
-   ========================================================================== */
+/* BUCH-BLÄTTER-SYSTEM (STORY-PAGES) */
 .story-page {
   display: none !important;
   position: relative !important;
@@ -384,18 +319,11 @@ main {
   font-family: Arial, sans-serif !important;
   color: #00ffff !important;
   font-size: clamp(0.95rem, 2.5vw, 1.25rem) !important;
-  text-shadow:
-    0 0 4px #6600ff,
-    1px 1px 3px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 0 0 4px #6600ff, 1px 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
-.story-page.active-page {
-  display: flex !important;
-}
-
-#page1.active-page {
-  animation: finalFade 2s ease-in-out 21.7s forwards;
-}
+.story-page.active-page { display: flex !important; }
+#page1.active-page { animation: finalFade 2s ease-in-out 21.7s forwards; }
 
 .story-btn {
   margin-top: 25px !important;
@@ -453,16 +381,13 @@ main {
   overflow: hidden;
 }
 
-.bee,
-.bumblebee,
-.butterfly {
+.bee, .bumblebee, .butterfly {
   position: absolute;
   pointer-events: none;
   display: inline-block;
 }
 
-.bee,
-.bumblebee {
+.bee, .bumblebee {
   left: var(--x);
   top: var(--y);
 }
@@ -474,15 +399,9 @@ main {
   font-size: clamp(28px, 5vw, 42px);
   animation: hummelSchwirren 8s infinite ease-in-out alternate;
 }
-.bee:nth-child(2n) {
-  animation-delay: -1.5s;
-}
-.bee:nth-child(3n) {
-  animation-delay: -3s;
-}
-.bumblebee:nth-child(2n) {
-  animation-delay: -2s;
-}
+.bee:nth-child(2n) { animation-delay: -1.5s; }
+.bee:nth-child(3n) { animation-delay: -3s; }
+.bumblebee:nth-child(2n) { animation-delay: -2s; }
 
 .butterfly {
   width: clamp(80px, 16vw, 120px);
@@ -490,28 +409,18 @@ main {
   z-index: 2;
   left: 40%;
   top: 40%;
+  /* Sorgt dafür, dass die JS-Rotation sauber mit dem CSS-Schwingen klappt */
+  transform: rotateY(var(--bf-rot, 0deg));
 }
 
-.butterfly svg {
-  width: 100%;
-  height: 100%;
-}
+.butterfly svg { width: 100%; height: 100%; }
 .falter-schweben {
   animation: sachteSchwingen 6s ease-in-out infinite alternate;
   transform-origin: 200px 200px;
 }
-.links {
-  animation: flügelschlagLinks 0.23s ease-in-out infinite alternate;
-  transform-origin: 200px 200px;
-}
-.rechts {
-  animation: flügelschlagRechts 0.23s ease-in-out infinite alternate;
-  transform-origin: 200px 200px;
-}
-.falter-rumpf {
-  animation: rumpfVibe 0.23s ease-in-out infinite alternate;
-  transform-origin: 200px 200px;
-}
+.links { animation: flügelschlagLinks 0.23s ease-in-out infinite alternate; transform-origin: 200px 200px; }
+.rechts { animation: flügelschlagRechts 0.23s ease-in-out infinite alternate; transform-origin: 200px 200px; }
+.falter-rumpf { animation: rumpfVibe 0.23s ease-in-out infinite alternate; transform-origin: 200px 200px; }
 
 .content-section ~ .butterfly {
   width: clamp(350px, 70vw, 750px);
@@ -545,22 +454,14 @@ main {
   box-shadow: 0 4px 20px rgba(102, 0, 255, 0.3);
 }
 
-.content-section h1,
-.content-section h2,
-.content-section h3 {
+.content-section h1, .content-section h2, .content-section h3 {
   color: #00ffff !important;
   text-shadow: 0 0 6px #6600ff !important;
   margin-top: 0;
 }
 
-.gallery-container {
-  max-width: 1000px;
-  width: 95%;
-}
-.gallery-subtitle {
-  margin-bottom: 30px;
-  color: #a5f3fc;
-}
+.gallery-container { max-width: 1000px; width: 95%; }
+.gallery-subtitle { margin-bottom: 30px; color: #a5f3fc; }
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -575,10 +476,7 @@ main {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-  transition:
-    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    border-color 0.4s ease,
-    box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .gallery-item img {
@@ -591,9 +489,7 @@ main {
 .gallery-item:hover {
   transform: scale(1.04) translateY(-4px);
   border-color: #00ffff;
-  box-shadow:
-    0 0 15px rgba(0, 255, 255, 0.5),
-    0 10px 20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 10px 20px rgba(0, 0, 0, 0.7);
 }
 .image-caption {
   padding: 12px;
@@ -603,9 +499,7 @@ main {
   color: #00ffff;
   border-top: 1px solid rgba(0, 255, 255, 0.2);
   text-align: center;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 .gallery-item:hover .image-caption {
   background: #00ffff;
@@ -621,9 +515,7 @@ main {
   font-weight: bold;
   text-decoration: none;
   border-radius: 25px;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -665,7 +557,7 @@ main {
 }
 
 /* ==========================================================================
-   8. ABOUT US PAGES & RESPONSIVE LAYOUTS (MOBILE OPTIMIZED)
+   8. ABOUT US PAGES & RESPONSIVE LAYOUTS
    ========================================================================== */
 .about-main {
   display: flex;
@@ -681,85 +573,20 @@ main {
   height: clamp(300px, 35vw, 500px);
   z-index: 2;
 }
-.about-content {
-  max-width: 600px;
-  text-align: center;
-}
-.about-content h1 {
-  text-align: center;
-}
+.about-content { max-width: 600px; text-align: center; }
+.about-content h1 { text-align: center; }
 
-/* ABSOLUTE KORREKTUR FÜR HANDY-ANSICHT (BEIDSEITIG KUGELSICHER) */
 @media (max-width: 768px) {
-  /* Header flexibel untereinander stapeln */
-  header {
-    height: auto !important;
-    padding: 20px 10px !important;
-  }
-
-  nav {
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 12px !important;
-    padding: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Alle Navigationslinks (Home, FundMe etc.) brechen sauber um */
-  .nav-links {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 12px 20px !important; /* Genug vertikaler Platz zum Klicken */
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  nav a {
-    display: inline-block !important;
-    padding: 6px 10px !important; /* Vergrößert die Touch-Klickfläche */
-  }
-
-  /* Social Icons rutschen unter die Text-Links, blockieren nichts */
-  .nav-socials {
-    position: static !important;
-    transform: none !important;
-    margin-top: 5px !important;
-    margin-left: 0 !important;
-    justify-content: center !important;
-    width: 100% !important;
-  }
-
-  /* Cursor auf Handys komplett deaktivieren */
-  .trailing-bee-cursor {
-    display: none !important;
-  }
-
-  /* Footer-Banner flexibel machen */
-  div.bottom-banner {
-    padding: 20px 10px !important;
-    height: auto !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Footer-Links untereinander umbrechen lassen */
-  div.bottom-banner div.bottom-links {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 10px 20px !important;
-    width: 100% !important;
-  }
-
-  div.bottom-banner div.bottom-links a {
-    display: inline-block !important;
-    padding: 5px 10px !important;
-  }
+  header { height: auto !important; padding: 20px 10px !important; }
+  nav { flex-direction: column !important; justify-content: center !important; align-items: center !important; gap: 12px !important; padding: 0 !important; width: 100% !important; box-sizing: border-box !important; }
+  .nav-links { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; gap: 12px 20px !important; width: 100% !important; max-width: 100% !important; }
+  nav a { display: inline-block !important; padding: 6px 10px !important; }
+  .nav-socials { position: static !important; transform: none !important; margin-top: 5px !important; margin-left: 0 !important; justify-content: center !important; width: 100% !important; }
+  .trailing-bee-cursor { display: none !important; }
+  div.bottom-banner { padding: 20px 10px !important; height: auto !important; width: 100% !important; box-sizing: border-box !important; }
+  div.bottom-banner div.bottom-links { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; gap: 10px 20px !important; width: 100% !important; }
+  div.bottom-banner div.bottom-links a { display: inline-block !important; padding: 5px 10px !important; }
+  body { background-attachment: scroll !important; min-height: 100dvh; }
 }
 
 /* ==========================================================================
@@ -780,12 +607,7 @@ div.bottom-banner {
   margin-top: auto !important;
 }
 
-div.bottom-banner div.bottom-links {
-  display: flex !important;
-  gap: 40px !important;
-  z-index: 2 !important;
-}
-
+div.bottom-banner div.bottom-links { display: flex !important; gap: 40px !important; z-index: 2 !important; }
 div.bottom-banner div.bottom-links a {
   color: #00ffff !important;
   text-decoration: none !important;
@@ -796,11 +618,7 @@ div.bottom-banner div.bottom-links a {
   border: none !important;
   background: none !important;
 }
-
-div.bottom-banner div.bottom-links a:hover {
-  color: #6600ff !important;
-}
-
+div.bottom-banner div.bottom-links a:hover { color: #6600ff !important; }
 div.bottom-banner::before {
   content: "HUMBLEBEE" !important;
   position: absolute !important;
@@ -820,18 +638,7 @@ div.bottom-banner::before {
 /* ==========================================================================
    10. NEON-DESIGN FÜR PRODUKTKARTEN (CYBER SHOP)
    ========================================================================== */
-.shop-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  z-index: 6;
-  margin: 40px 0;
-}
-
+.shop-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; width: 100%; max-width: 1200px; z-index: 6; margin: 40px 0; }
 .product-card {
   background: rgba(0, 0, 0, 0.65) !important;
   backdrop-filter: blur(8px);
@@ -842,180 +649,11 @@ div.bottom-banner::before {
   width: 100%;
   max-width: 290px;
   box-shadow: 0 4px 20px rgba(102, 0, 255, 0.3) !important;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
   box-sizing: border-box;
 }
-
-.product-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 0 25px #6600ff !important;
-  border-color: #00ffff !important;
-}
-
-.product-img-wrapper {
-  width: 100%;
-  height: 240px;
-  overflow: hidden;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.product-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 12px;
-  box-sizing: border-box;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.product-card:hover .product-img {
-  transform: scale(1.05);
-}
-
-.product-title {
-  font-size: 1.25rem !important;
-  font-family: Arial, sans-serif;
-  margin: 15px 0 8px 0 !important;
-  color: #00ffff !important;
-  text-shadow: 0 0 3px #6600ff !important;
-  font-weight: bold;
-}
-
-.product-price {
-  font-weight: bold !important;
-  font-family: Arial, sans-serif;
-  font-size: 1.2rem;
-  color: #ffffff !important;
-  margin-bottom: 20px !important;
-}
-
-.buy-btn {
-  background: rgba(0, 255, 255, 0.05) !important;
-  color: #00ffff !important;
-  border: 2px solid #00ffff !important;
-  padding: 12px 20px !important;
-  border-radius: 30px !important;
-  width: 100% !important;
-  font-weight: bold !important;
-  cursor: pointer !important;
-  font-size: 0.95rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 0 0 5px rgba(0, 255, 255, 0.2) !important;
-}
-
-.buy-btn:hover {
-  background: #00ffff !important;
-  color: #000000 !important;
-  box-shadow: 0 0 15px #00ffff !important;
-}
-
-.bienen-schutz {
-  unicode-bidi: bidi-override;
-  direction: rtl;
-  display: inline-block;
-}
-
-/* ==========================================================================
-   11. GLOBAL SNIPCART SHADOW DOM OVERRIDES
-   ========================================================================== */
-:root {
-  --snipcart-cart-bg: transparent !important;
-  --snipcart-color-default: #ffffff !important;
-  --snipcart-color-muted: #a5f3fc !important;
-  --snipcart-color-button-primary: #00ffff !important;
-  --snipcart-color-button-primary-hover: #ffffff !important;
-  --snipcart-color-button-primary-text: #000000 !important;
-  --snipcart-color-button-primary-hover-text: #000000 !important;
-  --snipcart-color-link: #00ffff !important;
-  --snipcart-color-icon: #00ffff !important;
-  --snipcart-border-color: rgba(0, 255, 255, 0.2) !important;
-  --snipcart-radius: 16px !important;
-}
-
-#snipcart .snipcart-layout,
-#snipcart .snipcart-cart__content,
-#snipcart .snipcart-modal__container {
-  background-image: url("sunset.png") !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-color: transparent !important;
-  color: #ffffff !important;
-  font-family: Arial, sans-serif !important;
-}
-
-#snipcart .snipcart-cart-header,
-#snipcart .snipcart-item-line,
-#snipcart .snipcart-textbox,
-#snipcart .snipcart-input {
-  background-color: transparent !important;
-  background-image: none !important;
-}
-
-#snipcart .snipcart-modal,
-#snipcart .snipcart-overlay,
-#snipcart .snipcart-lightbox,
-div.snipcart-modal,
-div.snipcart-overlay-slideout {
-  background: transparent !important;
-  background-color: transparent !important;
-  backdrop-filter: none !important;
-}
-
-#snipcart .snipcart-cart__content {
-  border: 2px solid #00ffff !important;
-  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3) !important;
-}
-
-#snipcart .snipcart-item-line__title,
-#snipcart .snipcart-item-description,
-#snipcart .snipcart-cart-summary-fees__amount,
-#snipcart .snipcart-cart-summary-title,
-#snipcart .snipcart-item-line__header .snipcart-item-line__price,
-#snipcart .snipcart-cart-summary-fees__title,
-#snipcart .snipcart-cart-summary__label,
-#snipcart .snipcart-item-custom-fields__name,
-#snipcart .snipcart-item-custom-fields__value,
-#snipcart .snipcart-cart__footer-title,
-#snipcart .snipcart-modal__title,
-#snipcart .snipcart-cart-header__title,
-#snipcart .snipcart-item-quantity__label,
-#snipcart .snipcart-cart-summary-fees,
-#snipcart .snipcart-cart-summary-fees span,
-#snipcart .snipcart-cart-summary__total,
-#snipcart .snipcart-cart-summary__total span,
-#snipcart .snipcart-cart__footer,
-#snipcart .snipcart-item-custom-fields,
-#snipcart .snipcart-item-custom-fields label,
-#snipcart .snipcart-dropdown,
-#snipcart .snipcart-dropdown__select {
-  color: #00ffff !important;
-  font-weight: bold !important;
-  text-shadow:
-    0 0 4px rgba(0, 255, 255, 0.6),
-    1px 1px 2px rgba(0, 0, 0, 0.9) !important;
-}
-
-#snipcart .snipcart-item-quantity__quantity {
-  color: #6600ff !important;
-  font-weight: bold !important;
-  text-shadow: none !important;
-}
-/* Fix für mobile Android- und iOS-Geräte */
-@media (max-width: 768px) {
-  body {
-    /* Deaktiviert den fehlerhaften fixierten Hintergrund auf Handys */
-    background-attachment: scroll !important;
-
-    /* Nutzt die moderne dynamische Viewport-Höhe, um das Springen durch die Adressleiste zu verhindern */
-    min-height: 100dvh;
-  }
-}
+.product-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 0 25px #6600ff !important; border-color: #00ffff !important; }
+.product-img-wrapper { width: 100%; height: 240px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); background: #111; display: flex; justify-content: center; align-items: center; }
+.product-img { width: 100%; height: 100%; object-fit: contain; padding: 12px; box-sizing: border-box; display: block; transition: transform 0.3s ease; }
+.product-card:hover .product-img { transform: scale(1.05); }
+.product-title { font-size: 1.25rem !important; font-family: Arial, sans-serif; margin: 15px 0 8px 0 !important; color: #00ffff !important; text-shadow: 0 0 3px #6600
