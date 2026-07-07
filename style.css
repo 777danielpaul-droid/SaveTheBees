@@ -994,7 +994,8 @@ div.snipcart-overlay-slideout {
     top: 25px !important; /* Fest oben verankert */
     transform: translateX(-50%) !important;
     animation: none !important;
-    color: #00ffff !important;
+    color: rgba(106, 13, 173, 0.6) !important; /* Das schöne Lila als Füllung */
+    -webkit-text-stroke: 2px #00ffff !important; /* Die türkise Outline */
     opacity: 1 !important;
     text-shadow:
       0 0 10px #00ffff,
