@@ -1019,8 +1019,10 @@ div.snipcart-overlay-slideout {
     width: 100% !important;
   }
 
+  /* NEU: Wir verkleinern die Biene auf Handys leicht, damit sie perfekt passt */
   .trailing-bee-cursor {
-    display: none !important;
+    width: 75px !important;
+    height: 75px !important;
   }
 
   div.bottom-banner {
