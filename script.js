@@ -36,15 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // MOBIL-MODUS: Erstelle die Cursor-Biene als freies Fluginsekt!
     const mobileHumblebee = document.createElement("div");
     mobileHumblebee.className = "mobile-hummel";
+
+    // Startet exakt in der Mitte des Bildschirms
+    mobileHumblebee.style.position = "fixed";
     mobileHumblebee.style.left = "50%";
     mobileHumblebee.style.top = "50%";
-    mobileHumblebee.style.position = "fixed";
+    mobileHumblebee.style.transform = "translate(-50%, -50%)";
 
-    const layer = document.querySelector(".insect-layer") || document.body;
-    if (layer) {
-      layer.appendChild(mobileHumblebee);
-      setTimeout(() => moveInsect(mobileHumblebee), 500);
-    }
+    // Direkt an den Body hängen, damit sie unabhängig vorn fliegen kann!
+    document.body.appendChild(mobileHumblebee);
+
+    // Erst nach einer kurzen Verzögerung losfliegen lassen, wenn das Layout steht
+    setTimeout(() => {
+      mobileHumblebee.style.left = "40%";
+      mobileHumblebee.style.top = "40%";
+      moveInsect(mobileHumblebee);
+    }, 1000);
   } else {
     // DESKTOP-MODUS: Normaler Mauszeiger-Folger
     const beeFollower = document.createElement("div");
