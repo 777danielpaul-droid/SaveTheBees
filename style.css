@@ -396,7 +396,6 @@ main {
   display: flex !important;
 }
 
-/* Page 1 blendet im Normalfall zeitverzögert nach dem Intro ein */
 #page1 {
   position: absolute;
   left: 50%;
@@ -406,7 +405,6 @@ main {
   animation: finalFade 2s ease-in-out 21.7s forwards;
 }
 
-/* Sobald sie aktiv geschaltet wird, bricht sie aus der absoluten Intro-Position aus */
 #page1.active-page {
   position: relative !important;
   left: auto !important;
@@ -456,7 +454,6 @@ main {
   width: 100% !important;
 }
 
-/* SKIP-INTRO BUTTON DESIGN */
 #skip-intro-btn {
   position: absolute !important;
   bottom: -60px !important;
@@ -516,6 +513,15 @@ main {
   font-size: clamp(28px, 5vw, 42px);
   animation: hummelSchwirren 8s infinite ease-in-out alternate;
 }
+
+/* NEU: Klasse für die freie Handy-Hummel (Cursor-Ersatz) */
+.bumblebee.mobile-hummel {
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .bee:nth-child(2n) {
   animation-delay: -1.5s;
 }
@@ -1019,10 +1025,9 @@ div.snipcart-overlay-slideout {
     width: 100% !important;
   }
 
-  /* NEU: Wir verkleinern die Biene auf Handys leicht, damit sie perfekt passt */
+  /* ÄNDERUNG: Wir verstecken den unzuverlässigen Custom-Mauszeiger mobil komplett! */
   .trailing-bee-cursor {
-    width: 75px !important;
-    height: 75px !important;
+    display: none !important;
   }
 
   div.bottom-banner {

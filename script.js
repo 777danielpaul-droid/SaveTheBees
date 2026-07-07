@@ -104,62 +104,82 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 1. Erstelle das Bienen-Element dynamisch im DOM
-  const beeFollower = document.createElement("div");
-  beeFollower.className = "trailing-bee-cursor";
-  document.body.appendChild(beeFollower);
+  // Smasher-Weiche: Mobilgeräte oder Tablets herausfiltern
+  const isMobileDevice =
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    window.innerWidth <= 768;
 
-  let mouseX = 0,
-    mouseY = 0;
-  let beeX = 0,
-    beeY = 0;
-  let angle = 0;
-  const easing = 0.07;
+  if (isMobileDevice) {
+    // MOBIL-MODUS: Erstelle die Cursor-Biene als freies Fluginsekt!
+    const mobileHumblebee = document.createElement("div");
+    mobileHumblebee.className = "bumblebee mobile-hummel";
+    mobileHumblebee.style.backgroundImage = "url('CursorBee.png')";
 
-  window.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+    // In den Insekten-Layer einsetzen
+    const layer = document.querySelector(".insect-layer");
+    if (layer) {
+      layer.appendChild(mobileHumblebee);
+      setTimeout(() => {
+        moveBumbleBee(mobileHumblebee);
+      }, 500);
+    }
+  } else {
+    // DESKTOP-MODUS: Normaler Mauszeiger-Folger
+    const beeFollower = document.createElement("div");
+    beeFollower.className = "trailing-bee-cursor";
+    document.body.appendChild(beeFollower);
 
-  function renderLoop() {
-    beeX += (mouseX - beeX) * easing;
-    beeY += (mouseY - beeY) * easing;
+    let mouseX = 0,
+      mouseY = 0;
+    let beeX = 0,
+      beeY = 0;
+    let angle = 0;
+    const easing = 0.07;
 
-    angle += 0.04;
-    const circleRadius = 24;
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
 
-    const finalX = beeX + Math.cos(angle) * circleRadius - 32;
-    const finalY = beeY + Math.sin(angle) * circleRadius - 32;
+    function renderLoop() {
+      beeX += (mouseX - beeX) * easing;
+      beeY += (mouseY - beeY) * easing;
 
-    beeFollower.style.setProperty("--bee-x", `${finalX}px`);
-    beeFollower.style.setProperty("--bee-y", `${finalY}px`);
+      angle += 0.04;
+      const circleRadius = 24;
 
-    const direction = mouseX > beeX ? -1 : 1;
+      const finalX = beeX + Math.cos(angle) * circleRadius - 32;
+      const finalY = beeY + Math.sin(angle) * circleRadius - 32;
 
-    if (!beeFollower.classList.contains("bee-hovering")) {
-      beeFollower.style.transform = `translate3d(${finalX}px, ${finalY}px, 0) scaleX(${direction})`;
+      beeFollower.style.setProperty("--bee-x", `${finalX}px`);
+      beeFollower.style.setProperty("--bee-y", `${finalY}px`);
+
+      const direction = mouseX > beeX ? -1 : 1;
+
+      if (!beeFollower.classList.contains("bee-hovering")) {
+        beeFollower.style.transform = `translate3d(${finalX}px, ${finalY}px, 0) scaleX(${direction})`;
+      }
+
+      requestAnimationFrame(renderLoop);
     }
 
     requestAnimationFrame(renderLoop);
+
+    // Strategische Hover-Detektion (Nur für Desktop!)
+    const moneyTargets = document.querySelectorAll(
+      'a[href="shop.html"], a[href="donate.html"]',
+    );
+
+    moneyTargets.forEach((target) => {
+      target.addEventListener("mouseenter", () => {
+        beeFollower.classList.add("bee-hovering");
+      });
+      target.addEventListener("mouseleave", () => {
+        beeFollower.classList.remove("bee-hovering");
+      });
+    });
   }
-
-  requestAnimationFrame(renderLoop);
-
-  // ==========================================================================
-  // BRAINS STRATEGISCHE HOVER-DETEKTION (Nur für Shop & FundMe!)
-  // ==========================================================================
-  const moneyTargets = document.querySelectorAll(
-    'a[href="shop.html"], a[href="donate.html"]',
-  );
-
-  moneyTargets.forEach((target) => {
-    target.addEventListener("mouseenter", () => {
-      beeFollower.classList.add("bee-hovering");
-    });
-    target.addEventListener("mouseleave", () => {
-      beeFollower.classList.remove("bee-hovering");
-    });
-  });
 });
 
 // ==========================================================================
@@ -211,23 +231,20 @@ function closeStory() {
 // NEU: INTRO ÜBERSPRINGEN LOGIK
 // ==========================================================================
 function skipIntro() {
-  // 1. Alle Intro-Texte sofort unsichtbar machen und Animationen stoppen
   const introTexts = document.querySelectorAll(".animated-text");
   introTexts.forEach((txt) => {
     txt.style.animation = "none";
     txt.style.opacity = "0";
   });
 
-  // 2. Den Skip-Button selbst verschwinden lassen
   const skipBtn = document.getElementById("skip-intro-btn");
   if (skipBtn) {
     skipBtn.style.display = "none";
   }
 
-  // 3. Seite 1 der Geschichte sofort aktivieren und sichtbar machen
   const page1 = document.getElementById("page1");
   if (page1) {
-    page1.style.animation = "none"; // Verhindert, dass die CSS-Animation dazwischengrätscht
+    page1.style.animation = "none";
     page1.classList.add("active-page");
     page1.style.opacity = "1";
   }
