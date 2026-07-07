@@ -402,9 +402,10 @@ main {
     0 0 4px #6600ff,
     1px 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
-
 .story-page.active-page {
   display: flex !important;
+  opacity: 1 !important; /* Macht die Seite sofort sichtbar */
+  animation: none !important; /* Killt die 21.7 Sekunden Wartezeit */
 }
 
 #page1 {
@@ -761,7 +762,7 @@ div.bottom-banner {
 
 div.bottom-banner div.bottom-links {
   display: grid !important;
-  grid-template-columns: 1fr 1.5fr 1fr !important;
+  grid-template-columns: 1fr 1fr 1fr !important; /* Symmetrische Spalten für perfekte Mitte */
   align-items: center !important;
   max-width: 100% !important;
   width: 100%;
@@ -771,20 +772,21 @@ div.bottom-banner div.bottom-links {
   box-sizing: border-box;
 }
 
-div.bottom-banner div.bottom-links .footer-links-container,
-div.bottom-banner div.bottom-links > align-self-start-placeholder {
+/* Link ganz links ausrichten */
+div.bottom-banner div.bottom-links a:first-child {
   grid-column: 1 !important;
-  display: flex !important;
-  gap: 30px !important;
+  justify-self: start !important;
 }
 
-/* === MANUELLE VERSCHIEBUNG FÜR DATENSCHUTZBESTIMMUNGEN === */
+/* Der mittlere Link wird nun automatisch exakt zentriert */
 #footer-datenschutz {
+  grid-column: 2 !important;
+  justify-self: center !important;
   position: relative !important;
-  /* Passe die Werte hier an: Erste Zahl = Links(-)/Rechts(+), Zweite Zahl = Oben(-)/Unten(+) */
-  transform: translate(-40px, 0px) !important;
+  transform: none !important; /* Der fehlerhafte Pixel-Shift ist weg! */
 }
 
+/* Link ganz rechts ausrichten */
 div.bottom-banner div.bottom-links a:last-child:not(.footer-links-container a) {
   grid-column: 3 !important;
   justify-self: end !important;
@@ -804,23 +806,6 @@ div.bottom-banner div.bottom-links a {
 
 div.bottom-banner div.bottom-links a:hover {
   color: #6600ff !important;
-}
-
-div.bottom-banner::before {
-  content: "HUMBLEBEE" !important;
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  font-family: "Arial Black", sans-serif !important;
-  font-size: clamp(2rem, 6vw, 4.5rem) !important;
-  font-weight: 900 !important;
-  letter-spacing: 12px !important;
-  color: rgba(106, 13, 173, 0.6) !important;
-  -webkit-text-stroke: 2px #00ffff !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  animation: ultravioletPulse 4s ease-in-out infinite !important;
 }
 
 /* ==========================================================================
