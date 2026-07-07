@@ -395,8 +395,23 @@ main {
 .story-page.active-page {
   display: flex !important;
 }
-#page1.active-page {
+
+/* Page 1 blendet im Normalfall zeitverzögert nach dem Intro ein */
+#page1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
   animation: finalFade 2s ease-in-out 21.7s forwards;
+}
+
+/* Sobald sie aktiv geschaltet wird, bricht sie aus der absoluten Intro-Position aus */
+#page1.active-page {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
 }
 
 .story-btn {
@@ -439,6 +454,31 @@ main {
   gap: 20px !important;
   justify-content: center !important;
   width: 100% !important;
+}
+
+/* SKIP-INTRO BUTTON DESIGN */
+#skip-intro-btn {
+  position: absolute !important;
+  bottom: -60px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  padding: 8px 18px !important;
+  background: rgba(0, 255, 255, 0.05) !important;
+  border: 1px solid #00ffff !important;
+  color: #00ffff !important;
+  font-weight: bold !important;
+  font-size: 0.85rem !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  z-index: 100 !important;
+  transition: all 0.3s ease !important;
+  text-shadow: none !important;
+}
+
+#skip-intro-btn:hover {
+  background: #00ffff !important;
+  color: #000000 !important;
+  box-shadow: 0 0 10px #00ffff !important;
 }
 
 /* ==========================================================================
@@ -492,7 +532,7 @@ main {
   z-index: 2;
   left: 40%;
   top: 40%;
-  transform: rotateY(var(--bf-rot, 0deg));
+  transform: rotate(var(--bf-rot, 0deg));
 }
 
 .butterfly svg {
@@ -926,19 +966,14 @@ div.snipcart-overlay-slideout {
    12. MOBILE STYLES & OPTIMIZATIONS (KORRIGIERT FÜR MAXIMALEN KONTRAST)
    ========================================================================== */
 @media (max-width: 768px) {
-  /* Bringt die riesige Hintergrundschrift perfekt auf das Handy-Display */
   header::before {
-    font-size: 1.8rem !important; /* Verkleinert, damit es links/rechts nicht rausbricht */
-    letter-spacing: 4px !important; /* Verringert den Buchstabenabstand für kleine Bildschirme */
-    top: 25% !important; /* Schiebt es nach oben, damit die Links es nicht verdecken */
+    font-size: 1.8rem !important;
+    letter-spacing: 4px !important;
+    top: 25% !important;
     transform: translate(-50%, -50%) !important;
-
-    /* ABSCHALTUNG DER PURPURNEN ANIMATION AUF DEM HANDY */
     animation: none !important;
-    color: #00ffff !important; /* Knallhartes, statisches Türkis */
-    opacity: 1 !important; /* Volle Sichtbarkeit, kein Verblassen mehr */
-
-    /* Mehrschichtiger, tiefer Schatten für extremen Kontrast */
+    color: #00ffff !important;
+    opacity: 1 !important;
     text-shadow:
       0 0 10px #00ffff,
       0 0 20px #6600ff,
