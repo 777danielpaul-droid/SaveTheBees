@@ -1095,3 +1095,19 @@ div.snipcart-overlay-slideout {
     min-height: 100dvh;
   }
 }
+/* ==========================================================================
+   MOBIL-HAUPTFIGUR (HUMBLEBEE IM FLUG-MODUS)
+   ========================================================================== */
+.mobile-hummel {
+  width: 85px; /* Perfekte Größe für mobile Bildschirme */
+  height: 85px;
+  background-image: url("CursorBee.png"); /* Lädt deine Hauptfigur */
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none; /* Verhindert, dass man die Biene aus Versehen anklickt */
+  z-index: 4; /* Fliegt leicht über den anderen Standard-Insekten */
+  will-change: left, top;
+
+  /* Verknüpft die Biene mit deiner grandiosen Hummel-Animation fürs echte Schwirren */
+  animation: hummelSchwirren 6s infinite ease-in-out alternate !important;
+}
