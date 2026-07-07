@@ -404,8 +404,8 @@ main {
 }
 .story-page.active-page {
   display: flex !important;
-  opacity: 1 !important; /* Macht die Seite sofort sichtbar */
-  animation: none !important; /* Killt die 21.7 Sekunden Wartezeit */
+  opacity: 1 !important;
+  animation: none !important;
 }
 
 #page1 {
@@ -762,7 +762,7 @@ div.bottom-banner {
 
 div.bottom-banner div.bottom-links {
   display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr !important; /* Symmetrische Spalten für perfekte Mitte */
+  grid-template-columns: 1fr 1fr 1fr !important;
   align-items: center !important;
   max-width: 100% !important;
   width: 100%;
@@ -772,21 +772,18 @@ div.bottom-banner div.bottom-links {
   box-sizing: border-box;
 }
 
-/* Link ganz links ausrichten */
 div.bottom-banner div.bottom-links a:first-child {
   grid-column: 1 !important;
   justify-self: start !important;
 }
 
-/* Der mittlere Link wird nun automatisch exakt zentriert */
 #footer-datenschutz {
   grid-column: 2 !important;
   justify-self: center !important;
   position: relative !important;
-  transform: none !important; /* Der fehlerhafte Pixel-Shift ist weg! */
+  transform: none !important;
 }
 
-/* Link ganz rechts ausrichten */
 div.bottom-banner div.bottom-links a:last-child:not(.footer-links-container a) {
   grid-column: 3 !important;
   justify-self: end !important;
@@ -996,12 +993,13 @@ div.snipcart-overlay-slideout {
     top: 25% !important;
     transform: translate(-50%, -50%) !important;
     animation: none !important;
-    color: #00ffff !important;
+    /* FIX: Hier holen wir das lila Neon-Design & Outline zurück! */
+    color: rgba(106, 13, 173, 0.6) !important;
+    -webkit-text-stroke: 2px #00ffff !important;
     opacity: 1 !important;
     text-shadow:
-      0 0 10px #00ffff,
-      0 0 20px #6600ff,
-      2px 2px 4px rgba(0, 0, 0, 1) !important;
+      0 0 10px rgba(0, 255, 255, 0.4),
+      0 0 20px rgba(102, 0, 255, 0.4) !important;
   }
 
   header {
@@ -1082,12 +1080,12 @@ div.snipcart-overlay-slideout {
     font-size: 1.8rem !important;
     letter-spacing: 4px !important;
     animation: none !important;
-    color: #00ffff !important;
+    color: rgba(106, 13, 173, 0.6) !important;
+    -webkit-text-stroke: 2px #00ffff !important;
     opacity: 1 !important;
     text-shadow:
-      0 0 10px #00ffff,
-      0 0 20px #6600ff,
-      2px 2px 4px rgba(0, 0, 0, 1) !important;
+      0 0 10px rgba(0, 255, 255, 0.4),
+      0 0 20px rgba(102, 0, 255, 0.4) !important;
   }
 
   body {
@@ -1095,11 +1093,11 @@ div.snipcart-overlay-slideout {
     min-height: 100dvh;
   }
 }
+
 /* ==========================================================================
-   MOBIL-HAUPTFIGUR (FINALE ABSICHERUNG)
+   13. MOBIL-HAUPTFIGUR (DIE ECHTE PNG-BIENE BEREINIGT)
    ========================================================================== */
 .mobile-hummel {
-  content: "" !important; /* Zwingt den Browser, das Element voll zu rendern */
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -1107,16 +1105,14 @@ div.snipcart-overlay-slideout {
   width: 85px !important;
   height: 85px !important;
 
-  /* Mit Anführungszeichen – exakt wie beim funktionierenden Desktop-Cursor */
   background-image: url("CursorBee.png") !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
 
   pointer-events: none !important;
-  z-index: 9999999 !important; /* Über allen Layern und Textboxen */
+  z-index: 9999999 !important;
   will-change: left, top;
 
-  /* Deine Schwirren-Animation */
   animation: hummelSchwirren 6s infinite ease-in-out alternate !important;
 }
