@@ -60,7 +60,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION
+   2. HEADER & NAVIGATION (DREI-SPALTEN-GRID)
    ========================================================================== */
 header {
   position: relative !important;
@@ -80,21 +80,26 @@ header {
 
 nav {
   position: relative;
-  display: flex !important;
-  justify-content: center !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1.5fr 1fr !important;
   align-items: center !important;
-  max-width: 1200px;
+  max-width: 100% !important;
   width: 100%;
   margin: 0 auto;
-  padding: 0 30px !important;
+  padding: 0 40px !important;
   min-height: 50px;
   z-index: 2 !important;
+  box-sizing: border-box;
+  background: transparent !important;
 }
 
 .nav-links {
+  grid-column: 1 !important;
   display: flex !important;
-  gap: 40px !important;
+  justify-content: flex-start !important;
+  gap: 30px !important;
   z-index: 2 !important;
+  background: transparent !important;
 }
 
 nav a {
@@ -108,6 +113,7 @@ nav a {
   animation: none !important;
   border: none !important;
   background: none !important;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8) !important;
 }
 
 .nav-links a:hover {
@@ -116,12 +122,15 @@ nav a {
 }
 
 .nav-socials {
+  grid-column: 3 !important;
   position: static !important;
   transform: none !important;
   display: flex !important;
+  justify-content: flex-end !important;
   gap: 15px;
-  margin-left: 40px;
+  margin-left: 0 !important;
   z-index: 2 !important;
+  background: transparent !important;
 }
 
 .social-icon {
@@ -135,6 +144,7 @@ nav a {
   transition:
     stroke 0.3s ease,
     transform 0.3s ease !important;
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.9));
 }
 
 .nav-socials a:hover .social-icon {
@@ -156,7 +166,8 @@ header::before {
   font-size: clamp(2rem, 6vw, 4.5rem) !important;
   font-weight: 900 !important;
   letter-spacing: 12px !important;
-  color: rgba(106, 13, 173, 0.47) !important;
+  color: rgba(106, 13, 173, 0.6) !important;
+  -webkit-text-stroke: 2px #00ffff !important;
   pointer-events: none !important;
   z-index: 1 !important;
   animation: ultravioletPulse 4s ease-in-out infinite !important;
@@ -513,15 +524,6 @@ main {
   font-size: clamp(28px, 5vw, 42px);
   animation: hummelSchwirren 8s infinite ease-in-out alternate;
 }
-
-/* NEU: Klasse für die freie Handy-Hummel (Cursor-Ersatz) */
-.bumblebee.mobile-hummel {
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
 .bee:nth-child(2n) {
   animation-delay: -1.5s;
 }
@@ -739,7 +741,7 @@ main {
 }
 
 /* ==========================================================================
-   9. FOOTER BANNER
+   9. FOOTER BANNER (DREI-SPALTEN-GRID)
    ========================================================================== */
 div.bottom-banner {
   position: relative;
@@ -754,13 +756,40 @@ div.bottom-banner {
   align-items: center !important;
   z-index: 10 !important;
   margin-top: auto !important;
+  box-sizing: border-box;
 }
 
 div.bottom-banner div.bottom-links {
-  display: flex !important;
-  gap: 40px !important;
-  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1.5fr 1fr !important;
+  align-items: center !important;
+  max-width: 100% !important;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px !important;
+  background: transparent !important;
+  box-sizing: border-box;
 }
+
+div.bottom-banner div.bottom-links .footer-links-container,
+div.bottom-banner div.bottom-links > align-self-start-placeholder {
+  grid-column: 1 !important;
+  display: flex !important;
+  gap: 30px !important;
+}
+
+/* === MANUELLE VERSCHIEBUNG FÜR DATENSCHUTZBESTIMMUNGEN === */
+#footer-datenschutz {
+  position: relative !important;
+  /* Passe die Werte hier an: Erste Zahl = Links(-)/Rechts(+), Zweite Zahl = Oben(-)/Unten(+) */
+  transform: translate(-40px, 0px) !important;
+}
+
+div.bottom-banner div.bottom-links a:last-child:not(.footer-links-container a) {
+  grid-column: 3 !important;
+  justify-self: end !important;
+}
+
 div.bottom-banner div.bottom-links a {
   color: #00ffff !important;
   text-decoration: none !important;
@@ -770,10 +799,13 @@ div.bottom-banner div.bottom-links a {
   animation: none !important;
   border: none !important;
   background: none !important;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8) !important;
 }
+
 div.bottom-banner div.bottom-links a:hover {
   color: #6600ff !important;
 }
+
 div.bottom-banner::before {
   content: "HUMBLEBEE" !important;
   position: absolute !important;
@@ -784,7 +816,8 @@ div.bottom-banner::before {
   font-size: clamp(2rem, 6vw, 4.5rem) !important;
   font-weight: 900 !important;
   letter-spacing: 12px !important;
-  color: rgba(106, 13, 173, 0.47) !important;
+  color: rgba(106, 13, 173, 0.6) !important;
+  -webkit-text-stroke: 2px #00ffff !important;
   pointer-events: none !important;
   z-index: 1 !important;
   animation: ultravioletPulse 4s ease-in-out infinite !important;
@@ -969,7 +1002,7 @@ div.snipcart-overlay-slideout {
 }
 
 /* ==========================================================================
-   12. MOBILE STYLES & OPTIMIZATIONS (KORRIGIERT FÜR MAXIMALEN KONTRAST)
+   12. MOBILE STYLES & OPTIMIZATIONS
    ========================================================================== */
 @media (max-width: 768px) {
   header::before {
@@ -992,6 +1025,7 @@ div.snipcart-overlay-slideout {
   }
 
   nav {
+    display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
@@ -1025,9 +1059,9 @@ div.snipcart-overlay-slideout {
     width: 100% !important;
   }
 
-  /* ÄNDERUNG: Wir verstecken den unzuverlässigen Custom-Mauszeiger mobil komplett! */
   .trailing-bee-cursor {
-    display: none !important;
+    width: 75px !important;
+    height: 75px !important;
   }
 
   div.bottom-banner {
@@ -1035,6 +1069,7 @@ div.snipcart-overlay-slideout {
     height: auto !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    justify-content: center !important;
   }
 
   div.bottom-banner div.bottom-links {
@@ -1046,9 +1081,28 @@ div.snipcart-overlay-slideout {
     width: 100% !important;
   }
 
+  div.bottom-banner div.bottom-links .footer-links-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px 20px !important;
+  }
+
   div.bottom-banner div.bottom-links a {
     display: inline-block !important;
     padding: 5px 10px !important;
+  }
+
+  div.bottom-banner::before {
+    font-size: 1.8rem !important;
+    letter-spacing: 4px !important;
+    animation: none !important;
+    color: #00ffff !important;
+    opacity: 1 !important;
+    text-shadow:
+      0 0 10px #00ffff,
+      0 0 20px #6600ff,
+      2px 2px 4px rgba(0, 0, 0, 1) !important;
   }
 
   body {
